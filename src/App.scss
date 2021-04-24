@@ -32,7 +32,10 @@ $light: #FAEBD7;
     font-size: 2rem;
     color: $light;
     border: none;
+    border-radius: 0px;
     border-bottom: 2px solid $light;
+    outline:0px !important;
+    box-shadow: none !important;
 }
 .formInput:focus{
     -webkit-transition: border 0.3s ease-in-out;

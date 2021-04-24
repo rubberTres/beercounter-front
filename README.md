@@ -20,5 +20,4 @@ npm run build
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f6047f00-5863-4206-8fed-75cca11d5b4a/deploy-status)](https://app.netlify.com/sites/beercounter/deploys)
