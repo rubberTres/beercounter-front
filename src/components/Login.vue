@@ -2,33 +2,41 @@
   <div>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <h1>LOGIN</h1>
+        <p class="header">Logowanie</p>
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <input type="text" name="login" placeholder="login" />
+        <input type="text" name="login" placeholder="Login" class="formInput" />
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <input type="password" name="pass" placeholder="password" />
+        <input
+          type="password"
+          name="pass"
+          placeholder="Password"
+          class="formInput"
+        />
       </b-col>
     </b-row>
     <b-row>
-      <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <button @click="login()" class="btn btn-outline-success my-2 my-sm-0">
-          ZALOGUJ SIĘ
+      <b-col class="mt-5 d-flex justify-content-center align-items-center">
+        <button
+          @click="login()"
+          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople"
+        >
+          ZALOGUJ SIE
         </button>
       </b-col>
     </b-row>
     <b-row>
-      <b-col class="mt-3 d-flex justify-content-center align-items-center">
+      <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
           @click="changeToRegister()"
-          class="btn btn-outline-success my-2 my-sm-0"
+          class="btn btn-sm animated-button mainButton bitSmallerButtonForDrunkPeople"
         >
-          ZAREJESTRUJ SIĘ
+          ZAREJESTRUJ SIE
         </button>
       </b-col>
     </b-row>
