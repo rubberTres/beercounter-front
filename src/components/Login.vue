@@ -24,7 +24,7 @@
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
           @click="login()"
-          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople"
+          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
         >
           ZALOGUJ SIE
         </button>
@@ -34,7 +34,7 @@
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
           @click="changeToRegister()"
-          class="btn btn-sm animated-button mainButton bitSmallerButtonForDrunkPeople"
+          class="btn btn-sm animated-button mainButton bitSmallerButtonForDrunkPeople rounded-0"
         >
           ZAREJESTRUJ SIE
         </button>
