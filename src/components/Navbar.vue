@@ -40,6 +40,9 @@ export default {
     renderAddPost: function () {
       this.$store.commit("CHANGE_COMPONENT", "AddPost");
     },
+    renderMain: function () {
+      this.$store.commit("CHANGE_COMPONENT", "Main");
+    },
   },
 };
 </script>
