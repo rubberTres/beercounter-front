@@ -5,9 +5,16 @@ import Vue from 'vue'
 Vue.use(Vuex);
 
 const state = {
-    currentComponent: "Login",
+    currentComponent: "Main",
     logged: false,
-    username: ""
+    username: "",
+    userRanking: [
+        { name: "Oskar", drank: 16, alcVol: 448 },
+        { name: "Kawoola", drank: 16, alcVol: 448 },
+        { name: "Igor", drank: 16, alcVol: 448 },
+        { name: "Pawel", drank: 16, alcVol: 448 },
+        { name: "Oliwka", drank: 50, alcVol: 0 }
+    ]
 }
 
 // getters

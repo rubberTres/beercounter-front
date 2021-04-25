@@ -11,9 +11,11 @@
 <script>
 import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
+import Main from "./components/Main.vue";
+
 export default {
   name: "App",
-  components: { Login, Register },
+  components: { Login, Register, Main },
 };
 </script>
 

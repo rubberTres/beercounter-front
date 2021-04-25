@@ -7,6 +7,14 @@ $light: #FAEBD7;
 
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
 @import 'node_modules/bootstrap-vue/src/index.scss';
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 #app {
     font-family: 'Roboto', sans-serif;
     width: 100vw;
@@ -70,4 +78,47 @@ p.header{
 	color: $dark;
 	background-color: #F7CA18;
     transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.rankItem{
+    color: $light;
+    font-family: 'Roboto Mono', sans-serif;
+    border: 1px dotted #F7CA18;
+}
+
+.rankHeader{
+    color: $dark;
+    font-family: 'Roboto Mono', sans-serif;
+    font-weight: 600;
+    background-color: #F7CA18;
+    border: 2px solid #F7CA18;
+}
+.singleItem:hover .rankItem{
+    color: $dark;
+    font-family: 'Roboto Mono', sans-serif;
+    font-weight: 600;
+	background-color: goldenrod;
+    border: 1px solid goldenrod;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.fontMono{
+    font-family: 'Roboto Mono', sans-serif;
+}
+
+.buttonNav{
+    height: 7vh;
+    width: 60vw;
+    color: $light;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5rem;
+    border: none;
+	border: 5px solid goldenrod;
+    background-color: $dark;
+	transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.border-bottom-light{
+    border-bottom: 1px solid goldenrod;
 }
