@@ -31,7 +31,7 @@ const actions = {
         })
     },
     register({ commit }, dane) {
-        axios.post("https://beer-counter-api.herokuapp.com/register", dane).then((res) => {
+        axios.post("https://beer-counter-api.herokuapp.com/addUser", dane).then((res) => {
             alert("Zostałeś zarejestrowany. Teraz możesz się zalogować.")
             commit('CHANGE_COMPONENT', "Login")
             console.log(res.data.message)
