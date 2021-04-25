@@ -24,18 +24,18 @@ const getters = {
 
 // actions
 const actions = {
-    login({ commit }, nick, pass) {
-        axios.post("http://linkdoheroku:2115/login", { name: nick, password: pass }).then((res) => {
+    login({ commit }, dane) {
+        axios.post("http://linkdoheroku:2115/login", dane).then((res) => {
             if (res.data.gituwa) commit('LOGGED', res.data.login)
             else alert("DANE SĄ NIEPRAWIDŁOWE")
         })
     },
-    register({ commit }, nick, pass) {
-        axios.post("https://beer-counter-api.herokuapp.com/register", { name: nick, password: pass }).then((res) => {
+    register({ commit }, dane) {
+        axios.post("https://beer-counter-api.herokuapp.com/register", dane).then((res) => {
             alert("Zostałeś zarejestrowany. Teraz możesz się zalogować.")
             commit('CHANGE_COMPONENT', "Login")
             console.log(res.data.message)
-            console.log("registered user", nick)
+            console.log("registered user", dane.name)
         })
     },
 }

@@ -57,7 +57,11 @@ export default {
       let password = document.querySelector("input[type=password][name=pass")
         .value;
       console.log(`login: ${login}, password: ${password}`);
-      this.$store.dispatch("register", login, password);
+      let dane = {
+        name: login,
+        password: password,
+      };
+      this.$store.dispatch("register", dane);
     },
     changeToLogin: function () {
       this.$store.commit("CHANGE_COMPONENT", "Login");
