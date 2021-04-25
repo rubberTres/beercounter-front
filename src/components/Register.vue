@@ -7,7 +7,13 @@
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <input type="text" name="login" placeholder="Login" class="formInput" />
+        <input
+          type="text"
+          name="login"
+          placeholder="Login"
+          class="formInput"
+          required
+        />
       </b-col>
     </b-row>
     <b-row>
@@ -17,6 +23,7 @@
           name="pass"
           placeholder="Password"
           class="formInput"
+          required
         />
       </b-col>
     </b-row>
@@ -56,11 +63,15 @@ export default {
       let login = document.querySelector("input[type=text][name=login").value;
       let password = document.querySelector("input[type=password][name=pass")
         .value;
-      let dane = {
-        name: login,
-        password: password,
-      };
-      this.$store.dispatch("register", dane);
+      if (login != "" && password != "") {
+        let dane = {
+          name: login,
+          password: password,
+        };
+        this.$store.dispatch("register", dane);
+      } else {
+        alert("nie wpisałeś loginu/hasła");
+      }
     },
     changeToLogin: function () {
       this.$store.commit("CHANGE_COMPONENT", "Login");
