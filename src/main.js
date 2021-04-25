@@ -9,4 +9,7 @@ Vue.use(BootstrapVue)
 new Vue({
   store: vuex,
   render: h => h(App),
+  mounted() {
+    this.$store.dispatch("checkIfLogged");
+  }
 }).$mount('#app')

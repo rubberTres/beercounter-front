@@ -50,7 +50,6 @@ export default {
       let login = document.querySelector("input[type=text][name=login").value;
       let password = document.querySelector("input[type=password][name=pass")
         .value;
-      console.log(`login: ${login}, password: ${password}`);
       let dane = {
         name: login,
         password: password,

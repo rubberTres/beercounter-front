@@ -17,18 +17,31 @@
         <b-nav-item @click="renderMain()" class="text-center">
           top 5
         </b-nav-item>
-        <b-nav-item class="text-center"> zgłoś wypite </b-nav-item>
+        <b-nav-item class="text-center" @click="renderAddPost()">
+          zgłoś wypite
+        </b-nav-item>
         <b-nav-item class="text-center"> użytkownicy </b-nav-item>
         <b-nav-item class="text-center"> piwa </b-nav-item>
         <b-nav-item class="text-center"> posty </b-nav-item>
-        <b-nav-item class="text-center"> wyloguj się </b-nav-item>
+        <b-nav-item class="text-center" @click="wyloguj()">
+          wyloguj się
+        </b-nav-item>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    wyloguj: function () {
+      this.$store.dispatch("logout");
+    },
+    renderAddPost: function () {
+      this.$store.commit("CHANGE_COMPONENT", "AddPost");
+    },
+  },
+};
 </script>
 
 <style lang="sass" scoped>
