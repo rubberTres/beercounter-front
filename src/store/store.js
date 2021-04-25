@@ -5,7 +5,7 @@ import Vue from 'vue'
 Vue.use(Vuex);
 
 const state = {
-    currentComponent: "Main",
+    currentComponent: "Login",
     logged: false,
     username: "",
     userRanking: [
@@ -25,14 +25,16 @@ const getters = {
 // actions
 const actions = {
     login({ commit }, nick, pass) {
-        axios.post("http://linkdoheroku:2115/login", { login: nick, password: pass }).then((res) => {
+        axios.post("http://linkdoheroku:2115/login", { name: nick, password: pass }).then((res) => {
             if (res.data.gituwa) commit('LOGGED', res.data.login)
             else alert("DANE SĄ NIEPRAWIDŁOWE")
         })
     },
     register({ commit }, nick, pass) {
-        axios.post("http://linkdoheroku:2115/register", { login: nick, password: pass }).then((res) => {
-            commit('LOGGED', res.data.login)
+        axios.post("https://beer-counter-api.herokuapp.com/register", { name: nick, password: pass }).then((res) => {
+            alert("Zostałeś zarejestrowany. Teraz możesz się zalogować.")
+            commit('CHANGE_COMPONENT', "Login")
+            console.log(res.data.message)
             console.log("registered user", nick)
         })
     },
