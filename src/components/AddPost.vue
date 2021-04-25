@@ -8,10 +8,10 @@
     </b-row>
     <b-row>
       <b-col class="mt-2 d-flex justify-content-center align-items-center">
-        <input type="file" accept="image/*" capture="camera" />
+        <input type="file" accept="image/*" capture="camera" id="file" />
       </b-col>
     </b-row>
-    <div v-if="nieMaPiwa">
+    <div v-if="!beerButton">
       <b-row>
         <b-col class="mt-3 d-flex justify-content-center align-items-center">
           <input
@@ -24,22 +24,28 @@
       </b-row>
       <b-row>
         <b-col class="mt-3 d-flex justify-content-center align-items-center">
-          <input
-            type="text"
-            name="procent"
-            placeholder="Procent alkoholu"
-            class="formInput"
-          />
+          <div class="formHelper">
+            <input
+              type="text"
+              name="procent"
+              placeholder="Procent alkoholu"
+              class="formInput"
+            />
+            <label>%</label>
+          </div>
         </b-col>
       </b-row>
       <b-row>
         <b-col class="mt-3 d-flex justify-content-center align-items-center">
-          <input
-            type="text"
-            name="volume"
-            placeholder="Pojemność (w ml)"
-            class="formInput"
-          />
+          <div class="formHelper">
+            <input
+              type="text"
+              name="volume"
+              placeholder="Pojemność (w ml)"
+              class="formInput"
+            />
+            <label>ml</label>
+          </div>
         </b-col>
       </b-row>
     </div>
@@ -53,6 +59,7 @@
         <v-select
           class="bigSelect"
           :options="this.$store.state.beerList"
+          v-model="selected"
           label="beername"
         ></v-select>
       </b-col>
@@ -70,6 +77,7 @@
     <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
+          @click="addPost()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
         >
           DODAJ
@@ -86,13 +94,47 @@ export default {
   data: () => {
     return {
       beerButton: true,
-      nieMaPiwa: false,
+      selected: null,
     };
   },
   methods: {
     showBeerForm: function () {
       this.nieMaPiwa = true;
       this.beerButton = false;
+    },
+    addPost: function () {
+      let uploaded = document.getElementById("file");
+      let fd = new FormData();
+      fd.append("file", uploaded.files[0]);
+
+      if (uploaded.files[0] != null && this.beerButton) {
+        if (this.selected != null) {
+          console.log(this.selected); // wybrany obiekt beer
+          //tutaj wstawić dispatcha z piwem które już istnieje
+        } else alert("Nie wybrałeś piwa!");
+      } else if (uploaded.files[0] != null && !this.beerButton) {
+        let beerName = document.querySelector("input[type=text][name=beerName]")
+          .value;
+        let beerVolume = document.querySelector("input[type=text][name=volume]")
+          .value;
+        let beerAlc = document.querySelector("input[type=text][name=procent]")
+          .value;
+        if (
+          beerName != "" &&
+          beerVolume != "" &&
+          beerAlc != "" &&
+          !isNaN(parseFloat(beerAlc)) &&
+          !isNaN(parseInt(beerVolume))
+        ) {
+          let object = {
+            beername: beerName,
+            voltage: parseFloat(beerAlc),
+            volume: parseInt(beerVolume),
+          }; // wybrane nowe piwo
+          console.log(object);
+          //tutaj wstawić dispatcha z dodawaniem nowego piwa
+        } else alert("Złe wartości w piwie! Czy na pewno wypełniłeś wszystko?");
+      } else alert("Nie przesłałeś pliku");
     },
   },
   components: { vSelect, Navbar },

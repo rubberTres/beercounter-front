@@ -144,4 +144,18 @@ p.header{
 input[type=file]{
     width: 142px;
 }
-  
+.formHelper label{
+    font-family: 'Roboto Mono', sans-serif;
+    color: goldenrod;
+    position: absolute;
+    top: 4vh;
+    left: 89%;
+    @media(max-width: 360px){
+        display: none;
+    }
+    @media(max-width: 437px){
+        position: absolute;
+        top: 4vh;
+        left: 85%;
+    }
+}
