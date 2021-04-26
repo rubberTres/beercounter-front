@@ -6,7 +6,10 @@
         <p class="header">TOP 5</p>
       </b-col>
     </b-row>
-    <rank-table :userTable="this.$store.state.userRanking"></rank-table>
+    <rank-table
+      :userTable="this.$store.state.userRanking"
+      :users="true"
+    ></rank-table>
     <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button

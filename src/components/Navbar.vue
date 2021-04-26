@@ -21,6 +21,9 @@
           zgłoś wypite
         </b-nav-item>
         <b-nav-item class="text-center"> użytkownicy </b-nav-item>
+        <b-nav-item class="text-center" @click="yourStats()">
+          twój profil
+        </b-nav-item>
         <b-nav-item class="text-center"> piwa </b-nav-item>
         <b-nav-item class="text-center"> posty </b-nav-item>
         <b-nav-item class="text-center" @click="wyloguj()">
@@ -42,6 +45,10 @@ export default {
     },
     renderMain: function () {
       this.$store.commit("CHANGE_COMPONENT", "Main");
+    },
+    yourStats: function () {
+      this.$store.commit("CHANGE_CHOSEN", this.$store.state.username);
+      this.$store.commit("CHANGE_COMPONENT", "UserStats");
     },
   },
 };

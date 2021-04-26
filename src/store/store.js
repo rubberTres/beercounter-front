@@ -15,7 +15,8 @@ const state = {
         { name: "Pawel", drank: 16, alcVol: 448 },
         { name: "Oliwka", drank: 50, alcVol: 0 }
     ],
-    beerList: []
+    beerList: [],
+    chosenUser: "Oskar"
 }
 
 // getters
@@ -81,6 +82,9 @@ const mutations = {
     },
     CHANGE_BEERLITS(state, val) {
         state.beerList = val
+    },
+    CHANGE_CHOSEN(state, val) {
+        state.chosenUser = val
     }
 }
 

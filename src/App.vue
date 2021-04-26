@@ -13,10 +13,11 @@ import Login from "./components/Login.vue";
 import Register from "./components/Register.vue";
 import Main from "./components/Main.vue";
 import AddPost from "./components/AddPost.vue";
+import UserStats from "./components/UserStats.vue";
 
 export default {
   name: "App",
-  components: { Login, Register, Main, AddPost },
+  components: { Login, Register, Main, AddPost, UserStats },
 };
 </script>
 

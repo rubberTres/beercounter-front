@@ -27,7 +27,10 @@
       </b-col>
     </b-row>
     <div v-for="(user, i) in userTable" :key="user.name">
-      <b-row class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem">
+      <b-row
+        class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem"
+        @click="renderUserStats(user.name)"
+      >
         <b-col
           cols="2"
           class="d-flex justify-content-center align-items-center rankItem"
@@ -60,6 +63,12 @@
 <script>
 export default {
   props: ["userTable"],
+  methods: {
+    renderUserStats: function (val) {
+      this.$store.commit("CHANGE_CHOSEN", val);
+      this.$store.commit("CHANGE_COMPONENT", "UserStats");
+    },
+  },
 };
 </script>
 
