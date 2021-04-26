@@ -31,18 +31,16 @@
     <beer-table :beerTable="rankingPiw"></beer-table>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">
-          POSTY {{ this.$store.state.chosenUser.toUpperCase() }}
-        </p>
+        <p class="header">POSTY</p>
       </b-col>
     </b-row>
     <b-row>
-      <b-col class="mt-5 d-flex justify-content-center align-items-center">
-        PLACEHOLDER - TU LISTA POSTÓW
+      <b-col class="mt-2 d-flex justify-content-center align-items-center">
+        <user-posts></user-posts>
       </b-col>
     </b-row>
     <b-row>
-      <b-col class="mt-5 d-flex justify-content-center align-items-center">
+      <b-col class="mt-5 mb-5 d-flex justify-content-center align-items-center">
         <button
           @click="getFullList()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
@@ -57,6 +55,7 @@
 <script>
 import Navbar from "./Navbar.vue";
 import BeerTable from "./BeerTable.vue";
+import UserPosts from "./UserPosts.vue";
 export default {
   computed: {
     rankingPiw() {
@@ -71,7 +70,7 @@ export default {
     },
   },
   methods: {},
-  components: { BeerTable, Navbar },
+  components: { BeerTable, Navbar, UserPosts },
 };
 </script>
 

@@ -1,0 +1,94 @@
+<template>
+  <div>
+    <div v-for="post in this.$store.state.posts" :key="post.date">
+      <b-row v-if="ifChosen(post.who)">
+        <b-col class="d-flex justify-content-center align-items-center">
+          <div class="projectBox">
+            <b-row class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem">
+              <b-col
+                md="5"
+                class="d-flex justify-content-center align-items-center beerItem"
+              >
+                <img
+                  :src="post.imgLink"
+                  style="
+                    height: 20vh;
+                    max-height: 100%;
+                    max-width: 100%;
+                    border: 1px solid rgba(0, 0, 0, 0.1);
+                  "
+                />
+              </b-col>
+              <b-col md="7" class="beerItem">
+                <b-row>
+                  <b-col
+                    class="mt-2 d-flex justify-content-center align-items-center"
+                  >
+                    <p>piwo: {{ post.beer }}</p>
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col
+                    class="mt-2 d-flex justify-content-center align-items-center"
+                  >
+                    <p>alkohol: {{ beerVoltage(post.beer) }}%</p>
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col
+                    class="mt-2 d-flex justify-content-center align-items-center"
+                  >
+                    <p>pojemność: {{ beerVolume(post.beer) }}ml</p>
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col
+                    class="mt-2 d-flex justify-content-center align-items-center"
+                  >
+                    <p>{{ post.date }}</p>
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+          </div>
+        </b-col>
+      </b-row>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  methods: {
+    beerVoltage(val) {
+      for (let i = 0; i < this.$store.state.beerList.length; i++) {
+        if (this.$store.state.beerList[i].beername == val)
+          return this.$store.state.beerList[i].voltage;
+      }
+    },
+    beerVolume(val) {
+      for (let i = 0; i < this.$store.state.beerList.length; i++) {
+        if (this.$store.state.beerList[i].beername == val)
+          return this.$store.state.beerList[i].volume;
+      }
+    },
+    ifChosen(val) {
+      return val == this.$store.state.chosenUser;
+    },
+  },
+  components: {},
+  mounted() {
+    this.$store.dispatch("getBeerList");
+  },
+};
+</script>
+
+<style lang="sass" scoped>
+.postBox
+  width: 80vw
+.projectBox
+  height: 250px
+  width: 80vw
+  @media(max-width: 800px)
+    height: 400px
+</style>
