@@ -16,7 +16,14 @@ const state = {
         { name: "Oliwka", drank: 50, alcVol: 0 }
     ],
     beerList: [],
-    chosenUser: "Oskar"
+    chosenUser: "Oskar",
+    posts: [
+        { who: "Oskar", beer: "Harnaś", imgLink: "https://i.imgur.com/SZ3CYCb.jpg", date: "2020.03.23 13:53" },
+        { who: "Oliwka", beer: "Żubr", imgLink: "https://ocen-piwo.pl/upload/cdab48dc2216cfaaf044af81078fe6bf.png", date: "2020.03.23 13:55" },
+        { who: "Kawula", beer: "Somersby Rose", imgLink: "https://i.imgur.com/SZ3CYCb.jpg", date: "2020.03.23 13:57" },
+        { who: "Oskar", beer: "MAZURSKI Dzikun Pils", imgLink: "https://untappd.akamaized.net/photos/2020_08_02/305d6542f77fd60a632267ef14b294f7_640x640.jpg", date: "2020.03.23 14:02" },
+
+    ],
 }
 
 // getters

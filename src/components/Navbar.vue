@@ -25,7 +25,9 @@
           twój profil
         </b-nav-item>
         <b-nav-item class="text-center"> piwa </b-nav-item>
-        <b-nav-item class="text-center"> posty </b-nav-item>
+        <b-nav-item class="text-center" @click="renderPosts()">
+          posty
+        </b-nav-item>
         <b-nav-item class="text-center" @click="wyloguj()">
           wyloguj się
         </b-nav-item>
@@ -49,6 +51,9 @@ export default {
     yourStats: function () {
       this.$store.commit("CHANGE_CHOSEN", this.$store.state.username);
       this.$store.commit("CHANGE_COMPONENT", "UserStats");
+    },
+    renderPosts: function () {
+      this.$store.commit("CHANGE_COMPONENT", "Posts");
     },
   },
 };

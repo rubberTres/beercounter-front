@@ -3,7 +3,9 @@
     <navbar></navbar>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">STATYSTYKI {{ this.$store.state.chosenUser }}</p>
+        <p class="header">
+          STATYSTYKI {{ this.$store.state.chosenUser.toUpperCase() }}
+        </p>
       </b-col>
     </b-row>
     <b-row>
@@ -29,7 +31,9 @@
     <beer-table :beerTable="rankingPiw"></beer-table>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">POSTY {{ this.$store.state.chosenUser }}</p>
+        <p class="header">
+          POSTY {{ this.$store.state.chosenUser.toUpperCase() }}
+        </p>
       </b-col>
     </b-row>
     <b-row>

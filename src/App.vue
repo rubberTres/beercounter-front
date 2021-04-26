@@ -14,10 +14,11 @@ import Register from "./components/Register.vue";
 import Main from "./components/Main.vue";
 import AddPost from "./components/AddPost.vue";
 import UserStats from "./components/UserStats.vue";
+import Posts from "./components/Posts.vue";
 
 export default {
   name: "App",
-  components: { Login, Register, Main, AddPost, UserStats },
+  components: { Login, Register, Main, AddPost, UserStats, Posts },
 };
 </script>
 
