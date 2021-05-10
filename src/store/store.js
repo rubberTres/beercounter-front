@@ -80,8 +80,7 @@ const actions = {
     },
     imageUpload({ commit }, dane) {
         const url = " https://api.cloudinary.com/v1_1/jebacpolicje-pl/upload";
-        alert("Dodałeś nowego posta!")
-        commit("CHANGE_COMPONENT", "Main")
+
         axios.post(url, dane.fd).then((res) => {
             let dateNow = new Date().toISOString()
             dateNow = dateNow.split("T")
@@ -94,6 +93,7 @@ const actions = {
                 date: `${dateNow[0]} ${dateNow[1][0]}`
             }
             axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
+                alert("Dodałeś nowego posta!")
                 commit("CHANGE_COMPONENT", "Posts")
             })
         })

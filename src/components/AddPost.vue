@@ -103,6 +103,8 @@ export default {
       this.beerButton = false;
     },
     addPost: function () {
+      let button = document.querySelector("button");
+      button.disabled = true;
       let uploaded = document.getElementById("file");
       let fd = new FormData();
       fd.append("file", uploaded.files[0]);
