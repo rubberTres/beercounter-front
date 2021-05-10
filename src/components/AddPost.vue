@@ -106,17 +106,16 @@ export default {
       let uploaded = document.getElementById("file");
       let fd = new FormData();
       fd.append("file", uploaded.files[0]);
+      fd.append("upload_preset", "penisjs");
 
       if (uploaded.files[0] != null && this.beerButton) {
         if (this.selected != null) {
           let dane = {
             who: this.$store.state.username,
-            image: uploaded.files[0],
             fd: fd,
             beer: this.selected.beername,
           };
-          console.log(dane);
-          this.$store.dispatch("addPost", dane);
+          this.$store.dispatch("imageUpload", dane);
         } else alert("Nie wybrałeś piwa!");
       } else if (uploaded.files[0] != null && !this.beerButton) {
         let beerName = document.querySelector("input[type=text][name=beerName]")
@@ -133,12 +132,19 @@ export default {
           !isNaN(parseInt(beerVolume))
         ) {
           let object = {
-            beername: beerName,
+            name: beerName,
             voltage: parseFloat(beerAlc),
             volume: parseInt(beerVolume),
           }; // wybrane nowe piwo
           console.log(object);
           //tutaj wstawić dispatcha z dodawaniem nowego piwa
+          this.$store.dispatch("addNewBeer", object);
+          let dane = {
+            who: this.$store.state.username,
+            fd: fd,
+            beer: beerName,
+          };
+          this.$store.dispatch("imageUpload", dane);
         } else alert("Złe wartości w piwie! Czy na pewno wypełniłeś wszystko?");
       } else alert("Nie przesłałeś pliku");
     },

@@ -8,22 +8,11 @@ const state = {
     currentComponent: "",
     logged: false,
     username: null,
-    userRanking: [
-        { name: "Oskar", drank: 16, alcVol: 448 },
-        { name: "Kawoola", drank: 16, alcVol: 448 },
-        { name: "Igor", drank: 16, alcVol: 448 },
-        { name: "Pawel", drank: 16, alcVol: 448 },
-        { name: "Oliwka", drank: 50, alcVol: 0 }
-    ],
+    userRanking: [],
+    userList: [],
     beerList: [],
     chosenUser: "Oskar",
-    posts: [
-        { who: "Oskar", beer: "Harnaś", imgLink: "https://i.imgur.com/SZ3CYCb.jpg", date: "2020.03.23 13:53" },
-        { who: "Oliwka", beer: "Żubr", imgLink: "https://ocen-piwo.pl/upload/cdab48dc2216cfaaf044af81078fe6bf.png", date: "2020.03.23 13:55" },
-        { who: "Kawula", beer: "Somersby Rose", imgLink: "https://i.imgur.com/SZ3CYCb.jpg", date: "2020.03.23 13:57" },
-        { who: "Oskar", beer: "MAZURSKI Dzikun Pils", imgLink: "https://untappd.akamaized.net/photos/2020_08_02/305d6542f77fd60a632267ef14b294f7_640x640.jpg", date: "2020.03.23 14:02" },
-
-    ],
+    posts: []
 }
 
 // getters
@@ -78,9 +67,57 @@ const actions = {
             commit("CHANGE_BEERLITS", res.data)
         })
     },
-    addPost({ commit }, dane) {
-        axios.post("https://beer-counter-api.herokuapp.com/upload", dane).then((res) => {
-            console.log("SIEMA ENIU WYSYŁAM POSTA")
+    addNewBeer({ commit }, dane) {
+        axios.post("https://beer-counter-api.herokuapp.com/addBeer", dane).then((res1) => {
+            console.log("dodales nowe piwo!")
+            console.log(res1.data)
+            axios.post("https://beer-counter-api.herokuapp.com/beers").then((res) => {
+                console.log(res.data)
+                commit("CHANGE_BEERLITS", res.data)
+            })
+        })
+    },
+    getPosts({ commit }) {
+        axios.post("https://beer-counter-api.herokuapp.com/posts").then((res) => {
+            console.log(res.data)
+            commit("GET_POSTS", res.data)
+        })
+    },
+    imageUpload({ commit }, dane) {
+        const url = " https://api.cloudinary.com/v1_1/jebacpolicje-pl/upload";
+        axios.post(url, dane.fd).then((res) => {
+            console.log(res.data['secure_url'])
+            let postData = {
+                who: dane.who,
+                beer: dane.beer,
+                link: res.data['secure_url']
+            }
+            axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
+                console.log("SIEMA ENIU WYSYŁAM POSTA")
+            })
+        })
+    },
+    getUserRanking({ commit }) {
+        axios.post("https://beer-counter-api.herokuapp.com/usersClient").then((res) => {
+            state.userList = res.data
+            let userTable = res.data
+            // generate userTable
+            for (let i = 0; i < state.posts.length; i++) {
+                for (let j = 0; j < userTable.length; j++) {
+                    if (state.posts[i].who == userTable[j].name) {
+                        let userName = state.posts[i].who
+                        let index = userTable.findIndex(x => x.name == userName);
+                        console.log(userName, index)
+                        userTable[index].drank = userTable[index].drank == null ? 1 : userTable[index].drank + 1
+                        let beerIndex = state.beerList.findIndex(x => x.beername == state.posts[i].beer)
+                        console.log(beerIndex)
+                        console.log(state.beerList[beerIndex])
+                        userTable[index].volume = userTable[index].volume == null ? state.beerList[beerIndex].volume : userTable[index].volume + state.beerList[beerIndex].volume
+                        userTable[index].alcVol = userTable[index].alcVol == null ? state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01 : userTable[index].alcVol + (state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01)
+                    }
+                }
+            }
+            state.userRanking = userTable
         })
     }
 }
@@ -101,6 +138,12 @@ const mutations = {
     },
     CHANGE_CHOSEN(state, val) {
         state.chosenUser = val
+    },
+    GET_POSTS(state, val) {
+        state.posts = val
+    },
+    UPDATE_RAKNING(state, val) {
+        state.userRanking = val
     }
 }
 

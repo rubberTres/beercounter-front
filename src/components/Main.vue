@@ -39,6 +39,11 @@ import RankTable from "./RankTable.vue";
 export default {
   methods: {},
   components: { RankTable, Navbar },
+  mounted() {
+    this.$store.dispatch("getPosts");
+    this.$store.dispatch("getBeerList");
+    this.$store.dispatch("getUserRanking");
+  },
 };
 </script>
 

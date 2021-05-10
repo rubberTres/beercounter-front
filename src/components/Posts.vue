@@ -7,7 +7,7 @@
       </b-col>
     </b-row>
 
-    <div v-for="post in this.$store.state.posts" :key="post.date">
+    <div v-for="post in this.$store.state.posts" :key="post.imgLink">
       <b-row>
         <b-col class="d-flex justify-content-center align-items-center">
           <div class="projectBox" @click="renderThisUser(post.who)">
@@ -96,6 +96,7 @@ export default {
   components: { Navbar },
   mounted() {
     this.$store.dispatch("getBeerList");
+    this.$store.dispatch("getPosts");
   },
 };
 </script>

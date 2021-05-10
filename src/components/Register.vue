@@ -68,7 +68,16 @@ export default {
           name: login,
           password: password,
         };
-        this.$store.dispatch("register", dane);
+        let pom = false;
+        for (let i = 0; i < this.$store.state.userList.length; i++) {
+          if (login == this.$store.state.userList[i].name) {
+            pom = true;
+            alert("JEST JUŻ USER O TYM LOGINIE");
+          }
+        }
+        if (!pom) {
+          this.$store.dispatch("register", dane);
+        }
       } else {
         alert("nie wpisałeś loginu/hasła");
       }
