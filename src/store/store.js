@@ -59,18 +59,18 @@ const actions = {
         alert("Zostałeś wylogowany.")
     },
     checkIfLogged({ commit }) {
-        if (localStorage.getItem('token') != null) {
-            axios.post("https://beer-counter-api.herokuapp.com/login/authenticate", { dane: `Bearer ${localStorage.getItem('token')}` }).then((res) => {
-                if (res.status != "403") {
-                    commit("LOGGED", res.data.data.user.name)
-                    commit("CHANGE_COMPONENT", "Main")
-                } else {
-                    commit("CHANGE_COMPONENT", "Login")
-                }
-            })
-        } else {
-            commit("CHANGE_COMPONENT", "Login")
-        }
+        // if (localStorage.getItem('token') != null) {
+        axios.post("https://beer-counter-api.herokuapp.com/login/authenticate", { dane: `Bearer ${localStorage.getItem('token')}` }).then((res) => {
+            if (res.data.text != "err") {
+                commit("LOGGED", res.data.data.user.name)
+                commit("CHANGE_COMPONENT", "Main")
+            } else {
+                commit("CHANGE_COMPONENT", "Login")
+            }
+        })
+        // } else {
+        //     commit("CHANGE_COMPONENT", "Login")
+        // }
     },
     getBeerList({ commit }) {
         axios.post("https://beer-counter-api.herokuapp.com/beers").then((res) => {
