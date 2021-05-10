@@ -15,7 +15,7 @@
     </b-row>
     <b-row>
       <b-col class="mt-2 d-flex justify-content-center align-items-center">
-        <p class="userStats">ilość piwa w ml: {{ userStat.volume }} ml</p>
+        <p class="userStats">ilość wypitego piwa: {{ userStat.volume }} ml</p>
       </b-col>
     </b-row>
     <b-row>
