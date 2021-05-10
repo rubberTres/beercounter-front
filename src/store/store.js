@@ -77,6 +77,11 @@ const actions = {
             console.log(res.data)
             commit("CHANGE_BEERLITS", res.data)
         })
+    },
+    addPost({ commit }, dane) {
+        axios.post("https://beer-counter-api.herokuapp.com/upload", dane).then((res) => {
+            console.log("SIEMA ENIU WYSYŁAM POSTA")
+        })
     }
 }
 const mutations = {

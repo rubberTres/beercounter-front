@@ -109,8 +109,14 @@ export default {
 
       if (uploaded.files[0] != null && this.beerButton) {
         if (this.selected != null) {
-          console.log(this.selected); // wybrany obiekt beer
-          //tutaj wstawić dispatcha z piwem które już istnieje
+          let dane = {
+            who: this.$store.state.username,
+            image: uploaded.files[0],
+            fd: fd,
+            beer: this.selected.beername,
+          };
+          console.log(dane);
+          this.$store.dispatch("addPost", dane);
         } else alert("Nie wybrałeś piwa!");
       } else if (uploaded.files[0] != null && !this.beerButton) {
         let beerName = document.querySelector("input[type=text][name=beerName]")
