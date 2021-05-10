@@ -15,10 +15,21 @@ import Main from "./components/Main.vue";
 import AddPost from "./components/AddPost.vue";
 import UserStats from "./components/UserStats.vue";
 import Posts from "./components/Posts.vue";
+import AllUsers from "./components/AllUsers.vue";
+import BeerRanking from "./components/BeerRanking.vue";
 
 export default {
   name: "App",
-  components: { Login, Register, Main, AddPost, UserStats, Posts },
+  components: {
+    Login,
+    Register,
+    Main,
+    AddPost,
+    UserStats,
+    Posts,
+    AllUsers,
+    BeerRanking,
+  },
 };
 </script>
 

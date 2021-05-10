@@ -3,30 +3,30 @@
     <navbar></navbar>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">TOP 5</p>
+        <p class="header">WSZYSCY UZYTKOWNICY</p>
       </b-col>
     </b-row>
     <rank-table
-      :userTable="this.$store.state.userRanking"
+      :userTable="this.$store.state.userRankingAll"
       :users="true"
     ></rank-table>
     <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
-          @click="getFullList()"
+          @click="getTop()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
         >
-          PEŁNY RANKING
+          TOP 5
         </button>
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
-          @click="getBeers()"
+          @click="renderPosts()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
         >
-          RANKING PIW
+          POSTY
         </button>
       </b-col>
     </b-row>
@@ -38,11 +38,11 @@ import Navbar from "./Navbar.vue";
 import RankTable from "./RankTable.vue";
 export default {
   methods: {
-    getFullList: function () {
-      this.$store.commit("CHANGE_COMPONENT", "AllUsers");
+    getTop: function () {
+      this.$store.commit("CHANGE_COMPONENT", "Main");
     },
-    getBeers: function () {
-      this.$store.commit("CHANGE_COMPONENT", "BeerRanking");
+    renderPosts: function () {
+      this.$store.commit("CHANGE_COMPONENT", "Posts");
     },
   },
   components: { RankTable, Navbar },

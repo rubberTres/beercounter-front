@@ -9,6 +9,7 @@ const state = {
     logged: false,
     username: null,
     userRanking: [],
+    userRankingAll: [],
     userList: [],
     beerList: [],
     chosenUser: "Oskar",
@@ -38,7 +39,6 @@ const actions = {
         axios.post("https://beer-counter-api.herokuapp.com/addUser", dane).then((res) => {
             alert("Zostałeś zarejestrowany. Teraz możesz się zalogować.")
             commit('CHANGE_COMPONENT', "Login")
-            console.log(res.data.message, dane.name)
         })
     },
     logout({ commit }) {
@@ -63,34 +63,33 @@ const actions = {
     },
     getBeerList({ commit }) {
         axios.post("https://beer-counter-api.herokuapp.com/beers").then((res) => {
-            console.log(res.data)
             commit("CHANGE_BEERLITS", res.data)
         })
     },
     addNewBeer({ commit }, dane) {
         axios.post("https://beer-counter-api.herokuapp.com/addBeer", dane).then((res1) => {
-            console.log("dodales nowe piwo!")
-            console.log(res1.data)
             axios.post("https://beer-counter-api.herokuapp.com/beers").then((res) => {
-                console.log(res.data)
                 commit("CHANGE_BEERLITS", res.data)
             })
         })
     },
     getPosts({ commit }) {
         axios.post("https://beer-counter-api.herokuapp.com/posts").then((res) => {
-            console.log(res.data)
             commit("GET_POSTS", res.data)
         })
     },
     imageUpload({ commit }, dane) {
         const url = " https://api.cloudinary.com/v1_1/jebacpolicje-pl/upload";
         axios.post(url, dane.fd).then((res) => {
-            console.log(res.data['secure_url'])
+            let dateNow = new Date().toISOString()
+            dateNow = dateNow.split("T")
+            dateNow[1] = dateNow[1].split(".")
+
             let postData = {
                 who: dane.who,
                 beer: dane.beer,
-                link: res.data['secure_url']
+                link: res.data['secure_url'],
+                data: `${dateNow[0]} ${dateNow[1][0]}`
             }
             axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
                 alert("Dodałeś nowego posta!")
@@ -108,17 +107,20 @@ const actions = {
                     if (state.posts[i].who == userTable[j].name) {
                         let userName = state.posts[i].who
                         let index = userTable.findIndex(x => x.name == userName);
-                        console.log(userName, index)
                         userTable[index].drank = userTable[index].drank == null ? 1 : userTable[index].drank + 1
                         let beerIndex = state.beerList.findIndex(x => x.beername == state.posts[i].beer)
-                        console.log(beerIndex)
-                        console.log(state.beerList[beerIndex])
                         userTable[index].volume = userTable[index].volume == null ? state.beerList[beerIndex].volume : userTable[index].volume + state.beerList[beerIndex].volume
                         userTable[index].alcVol = userTable[index].alcVol == null ? state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01 : userTable[index].alcVol + (state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01)
                     }
                 }
             }
+            userTable.sort((a, b) => (a.drank < b.drank ? 1 : -1));
             state.userRanking = userTable
+            userTable.filter(onlyFive)
+            state.userRankingAll = userTable
+            function onlyFive(element, index) {
+                return index < 5
+            }
         })
     }
 }

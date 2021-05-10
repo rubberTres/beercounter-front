@@ -20,11 +20,15 @@
         <b-nav-item class="text-center" @click="renderAddPost()">
           zgłoś wypite
         </b-nav-item>
-        <b-nav-item class="text-center"> użytkownicy </b-nav-item>
+        <b-nav-item class="text-center" @click="allUsers()">
+          użytkownicy
+        </b-nav-item>
         <b-nav-item class="text-center" @click="yourStats()">
           twój profil
         </b-nav-item>
-        <b-nav-item class="text-center"> piwa </b-nav-item>
+        <b-nav-item class="text-center" @click="beerRanking()">
+          piwa
+        </b-nav-item>
         <b-nav-item class="text-center" @click="renderPosts()">
           posty
         </b-nav-item>
@@ -54,6 +58,12 @@ export default {
     },
     renderPosts: function () {
       this.$store.commit("CHANGE_COMPONENT", "Posts");
+    },
+    allUsers: function () {
+      this.$store.commit("CHANGE_COMPONENT", "AllUsers");
+    },
+    beerRanking: function () {
+      this.$store.commit("CHANGE_COMPONENT", "BeerRanking");
     },
   },
 };

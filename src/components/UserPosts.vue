@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="post in this.$store.state.posts" :key="post.date">
+    <div v-for="post in this.$store.state.posts" :key="post.imgLink">
       <b-row v-if="ifChosen(post.who)">
         <b-col class="d-flex justify-content-center align-items-center">
           <div class="projectBox">

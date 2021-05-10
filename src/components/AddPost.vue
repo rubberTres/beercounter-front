@@ -136,8 +136,6 @@ export default {
             voltage: parseFloat(beerAlc),
             volume: parseInt(beerVolume),
           }; // wybrane nowe piwo
-          console.log(object);
-          //tutaj wstawić dispatcha z dodawaniem nowego piwa
           this.$store.dispatch("addNewBeer", object);
           let dane = {
             who: this.$store.state.username,

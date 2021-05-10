@@ -11,5 +11,8 @@ new Vue({
   render: h => h(App),
   mounted() {
     this.$store.dispatch("checkIfLogged");
+    this.$store.dispatch("getPosts");
+    this.$store.dispatch("getBeerList");
+    this.$store.dispatch("getUserRanking");
   }
 }).$mount('#app')

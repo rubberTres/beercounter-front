@@ -32,7 +32,7 @@
           cols="5"
           class="d-flex justify-content-center align-items-center beerItem"
         >
-          {{ beer.name }}
+          {{ beer.beername }}
         </b-col>
         <b-col
           cols="3"
@@ -50,7 +50,7 @@
           cols="2"
           class="d-flex justify-content-center align-items-center beerItem"
         >
-          {{ beer.alcVol }}
+          {{ beer.voltage }}
         </b-col>
       </b-row>
     </div>

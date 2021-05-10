@@ -10,17 +10,17 @@
     </b-row>
     <b-row>
       <b-col class="mt-2 d-flex justify-content-center align-items-center">
-        <p class="userStats">wypite piwa: 3</p>
+        <p class="userStats">wypite piwa: {{ userStat.drank }}</p>
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-2 d-flex justify-content-center align-items-center">
-        <p class="userStats">ilość piwa w ml: 1500</p>
+        <p class="userStats">ilość piwa w ml: {{ userStat.volume }} ml</p>
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-2 d-flex justify-content-center align-items-center">
-        <p class="userStats">wypity alkohol: 90ml</p>
+        <p class="userStats">wypity alkohol: {{ userStat.alcVol }}ml</p>
       </b-col>
     </b-row>
     <b-row>
@@ -59,17 +59,31 @@ import UserPosts from "./UserPosts.vue";
 export default {
   computed: {
     rankingPiw() {
-      let beerRanking = [
-        { name: "Kustosz Tequila", drank: 6, volume: 500, alcVol: 5 },
-        { name: "Kuflowe Mocne", drank: 5, volume: 500, alcVol: 6 },
-        { name: "Sombersy Rose", drank: 4, volume: 400, alcVol: 4 },
-        { name: "Żubr", drank: 3, volume: 500, alcVol: 3 },
-        { name: "Perła Export", drank: 1, volume: 500, alcVol: 2 },
-      ];
+      let beerRanking = this.$store.state.beerList;
+      for (let i = 0; i < this.$store.state.posts.length; i++) {
+        if (this.$store.state.posts[i].who == this.$store.state.chosenUser) {
+          let index = beerRanking.findIndex(
+            (x) => x.beername == this.$store.state.posts[i].beer
+          );
+          beerRanking[index].drank =
+            beerRanking[index].drank == null ? 1 : beerRanking[index].drank + 1;
+        }
+      }
+      beerRanking = beerRanking.filter((x) => x.drank != null);
+      beerRanking.sort((a, b) => (a.drank < b.drank ? 1 : -1));
       return beerRanking;
     },
+    userStat() {
+      return this.$store.state.userList.find(
+        (x) => x.name == this.$store.state.chosenUser
+      );
+    },
   },
-  methods: {},
+  methods: {
+    getFullList: function () {
+      this.$store.commit("CHANGE_COMPONENT", "AllUsers");
+    },
+  },
   components: { BeerTable, Navbar, UserPosts },
 };
 </script>
