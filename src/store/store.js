@@ -141,7 +141,7 @@ const mutations = {
         state.chosenUser = val
     },
     GET_POSTS(state, val) {
-        state.posts = val
+        state.posts = val.sort((a, b) => (a.date < b.date) ? 1 : -1)
     },
     UPDATE_RAKNING(state, val) {
         state.userRanking = val
