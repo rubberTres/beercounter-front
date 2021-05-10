@@ -13,6 +13,11 @@
     </b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav class="mr-auto fontMono">
+        <b-nav-header @click="renderMain()" class="text-center yellowFont">
+          {{ daysUntil }}
+        </b-nav-header>
+      </b-navbar-nav>
       <b-navbar-nav class="ml-auto fontMono">
         <b-nav-item @click="renderMain()" class="text-center">
           top 5
@@ -42,6 +47,35 @@
 
 <script>
 export default {
+  computed: {
+    daysUntil: function () {
+      let dateOfTrip = new Date(2021, 7, 14);
+      dateOfTrip = Math.floor(
+        (dateOfTrip - new Date(dateOfTrip.getFullYear(), 0, 0)) /
+          1000 /
+          60 /
+          60 /
+          24
+      );
+      let currentDate = new Date();
+      currentDate = Math.floor(
+        (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
+          1000 /
+          60 /
+          60 /
+          24
+      );
+      if (dateOfTrip - currentDate > 0) {
+        return `zostało ${dateOfTrip - currentDate} dni do mazur`;
+      } else return `mazury edition`;
+    },
+    dayOfYear: function () {
+      let date = new Date();
+      return Math.floor(
+        (date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
+      );
+    },
+  },
   methods: {
     wyloguj: function () {
       this.$store.dispatch("logout");

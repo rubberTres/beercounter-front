@@ -40,7 +40,17 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col class="mt-5 mb-5 d-flex justify-content-center align-items-center">
+      <b-col class="mt-5 mb-3 d-flex justify-content-center align-items-center">
+        <button
+          @click="getPosts()"
+          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
+        >
+          WSZYSTKIE POSTY
+        </button>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="mt-3 mb-5 d-flex justify-content-center align-items-center">
         <button
           @click="getFullList()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
@@ -70,7 +80,15 @@ export default {
         }
       }
       beerRanking = beerRanking.filter((x) => x.drank != null);
-      beerRanking.sort((a, b) => (a.drank < b.drank ? 1 : -1));
+      beerRanking.sort((a, b) =>
+        a.drank < b.drank
+          ? 1
+          : a.drank === b.drank
+          ? a.volume < b.volume
+            ? 1
+            : -1
+          : -1
+      );
       return beerRanking;
     },
     userStat() {
@@ -82,6 +100,9 @@ export default {
   methods: {
     getFullList: function () {
       this.$store.commit("CHANGE_COMPONENT", "AllUsers");
+    },
+    getPosts: function () {
+      this.$store.commit("CHANGE_COMPONENT", "Posts");
     },
   },
   components: { BeerTable, Navbar, UserPosts },

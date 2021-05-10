@@ -114,9 +114,8 @@ const actions = {
                     }
                 }
             }
-            userTable.sort((a, b) => (a.drank < b.drank ? 1 : -1));
-            state.userRanking = userTable
-            userTable.filter(onlyFive)
+            userTable.sort((a, b) => (a.drank < b.drank) ? 1 : (a.drank === b.drank) ? ((a.alcVol < b.alcVol) ? 1 : -1) : -1)
+            state.userRanking = userTable.filter(onlyFive)
             state.userRankingAll = userTable
             function onlyFive(element, index) {
                 return index < 5

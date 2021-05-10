@@ -87,6 +87,9 @@ p.header{
     color: $light;
     font-family: 'Roboto Mono', sans-serif;
     border: 1px dotted #F7CA18;
+    @media(max-width: 400px){
+        font-size: 0.75rem;
+    }
 }
 
 .rankHeader{
@@ -110,7 +113,14 @@ p.header{
     font-family: 'Roboto Mono', sans-serif;
     border: 1px dotted #F7CA18;
     @media(max-width: 660px){
-        height: auto;
+        min-height: 50px;
+        justify-content: flex-start !important;
+    }
+    @media(max-width: 400px){
+        font-size: 0.75rem;
+    }
+    @media(max-width: 350px){
+        font-size: 0.65rem;
     }
 }
 .fontMono{
@@ -187,6 +197,14 @@ input[type=file]{
     font-family: 'Roboto Mono', sans-serif;
     border-bottom: 1px solid #FAEBD7;
     @media(max-width: 400px){
+        font-size: 1rem;
+    }
+}
+.yellowFont{
+    color: goldenrod;
+    font-family: 'Roboto Mono', sans-serif;
+    font-size: 2rem;
+    @media(max-width: 1200px){
         font-size: 1rem;
     }
 }

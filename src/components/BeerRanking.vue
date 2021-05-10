@@ -46,8 +46,16 @@ export default {
           }
         }
       }
-      // beerRanking = beerRanking.filter((x) => x.drank != null);
-      beerRanking.sort((a, b) => (a.drank < b.drank ? 1 : -1));
+      beerRanking.sort((a, b) =>
+        a.drank < b.drank
+          ? 1
+          : a.drank === b.drank
+          ? a.volume < b.volume
+            ? 1
+            : -1
+          : -1
+      );
+
       return beerRanking;
     },
     userStat() {
