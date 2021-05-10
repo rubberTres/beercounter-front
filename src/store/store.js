@@ -7,7 +7,7 @@ Vue.use(Vuex);
 const state = {
     currentComponent: "",
     logged: false,
-    username: localStorage.getItem('name') || null,
+    username: null,
     userRanking: [
         { name: "Oskar", drank: 16, alcVol: 448 },
         { name: "Kawoola", drank: 16, alcVol: 448 },
@@ -35,12 +35,11 @@ const getters = {
 const actions = {
     login({ commit }, dane) {
         axios.post("https://beer-counter-api.herokuapp.com/login", dane).then((res) => {
-            if (res.data.token != false) {
-                localStorage.setItem('token', res.data.token)
-                localStorage.setItem('name', res.data.name)
+            localStorage.setItem('token', res.data.token)
+            if (res.data.token != null) {
                 alert("Zalogowano.")
                 commit('CHANGE_COMPONENT', "Main")
-                commit("LOGGED", res.data.name)
+                commit("LOGGED", dane.name)
             } else {
                 alert("Nieprawidłowe dane")
             }
@@ -55,15 +54,20 @@ const actions = {
     },
     logout({ commit }) {
         localStorage.removeItem('token')
-        localStorage.removeItem('name')
         commit("LOGOUT")
         commit("CHANGE_COMPONENT", 'Login')
         alert("Zostałeś wylogowany.")
     },
     checkIfLogged({ commit }) {
-        if (localStorage.getItem('token') == "chuj") {
-            commit("LOGGED", localStorage.getItem('name'))
-            commit("CHANGE_COMPONENT", "Main")
+        if (localStorage.getItem('token') != null) {
+            axios.post("https://beer-counter-api.herokuapp.com/login/authenticate", { dane: `Bearer ${localStorage.getItem('token')}` }).then((res) => {
+                if (res.status != "403") {
+                    commit("LOGGED", res.data.data.user.name)
+                    commit("CHANGE_COMPONENT", "Main")
+                } else {
+                    commit("CHANGE_COMPONENT", "Login")
+                }
+            })
         } else {
             commit("CHANGE_COMPONENT", "Login")
         }
