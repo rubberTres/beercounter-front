@@ -93,7 +93,8 @@ const actions = {
                 link: res.data['secure_url']
             }
             axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
-                console.log("SIEMA ENIU WYSYŁAM POSTA")
+                alert("Dodałeś nowego posta!")
+                commit("CHANGE_COMPONENT", "Posts")
             })
         })
     },
