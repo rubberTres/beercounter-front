@@ -65,6 +65,9 @@ export default {
     },
   },
   components: { BeerTable, Navbar },
+  mounted() {
+    this.$store.dispatch("getBeerList");
+  },
 };
 </script>
 
