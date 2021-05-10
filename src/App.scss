@@ -87,6 +87,8 @@ p.header{
     color: $light;
     font-family: 'Roboto Mono', sans-serif;
     border: 1px dotted #F7CA18;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media(max-width: 400px){
         font-size: 0.75rem;
     }
