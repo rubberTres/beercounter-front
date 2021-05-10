@@ -79,7 +79,7 @@
         <button
           @click="addPost()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
-          id="addButton"
+          :disabled="hasClicked"
         >
           DODAJ
         </button>
@@ -96,6 +96,7 @@ export default {
     return {
       beerButton: true,
       selected: null,
+      hasClicked: false,
     };
   },
   methods: {
@@ -104,7 +105,7 @@ export default {
       this.beerButton = false;
     },
     addPost: function () {
-      document.getElementById("addButton").disabled = true;
+      this.hasClicked = true;
       let uploaded = document.getElementById("file");
       let fd = new FormData();
       fd.append("file", uploaded.files[0]);
