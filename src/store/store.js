@@ -101,13 +101,15 @@ const actions = {
             // generate userTable
             for (let i = 0; i < state.posts.length; i++) {
                 for (let j = 0; j < userTable.length; j++) {
+                    if (userTable[j].drank == null) userTable[j].drank = 0
+                    if (userTable[j].alcVol == null) userTable[j].alcVol = 0
                     if (state.posts[i].who == userTable[j].name) {
                         let userName = state.posts[i].who
                         let index = userTable.findIndex(x => x.name == userName);
-                        userTable[index].drank = userTable[index].drank == null ? 1 : userTable[index].drank + 1
+                        userTable[index].drank += 1
                         let beerIndex = state.beerList.findIndex(x => x.beername == state.posts[i].beer)
                         userTable[index].volume = userTable[index].volume == null ? state.beerList[beerIndex].volume : userTable[index].volume + state.beerList[beerIndex].volume
-                        userTable[index].alcVol = userTable[index].alcVol == null ? state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01 : userTable[index].alcVol + (state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01)
+                        userTable[index].alcVol += state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01
                     }
                 }
             }
