@@ -41,7 +41,7 @@
           cols="4"
           class="d-flex justify-content-center align-items-center rankItem"
         >
-          {{ user.name }}
+          <div class="cut">{{ user.name }}</div>
         </b-col>
         <b-col
           cols="3"

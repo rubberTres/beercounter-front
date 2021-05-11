@@ -24,7 +24,7 @@
                   <b-col
                     class="mt-2 d-flex justify-content-center align-items-center"
                   >
-                    <p>piwo: {{ post.beer }}</p>
+                    <p class="text-center">piwo: {{ post.beer }}</p>
                   </b-col>
                 </b-row>
                 <b-row>
