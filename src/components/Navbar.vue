@@ -15,7 +15,7 @@
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="mr-auto fontMono">
         <b-nav-text @click="renderMain()" class="text-center yellowFont">
-          {{ daysUntil }}
+          {{ timeUntil }}
         </b-nav-text>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto fontMono">
@@ -47,38 +47,54 @@
 
 <script>
 export default {
+  data: () => {
+    return {
+      timeUntil: "zostało x do mazur",
+      finishDate: new Date("Aug 14, 2021 08:00:00").getTime(),
+    };
+  },
   computed: {
     daysUntil: function () {
-      let dateOfTrip = new Date(2021, 7, 14);
-      dateOfTrip = Math.floor(
-        (dateOfTrip - new Date(dateOfTrip.getFullYear(), 0, 0)) /
-          1000 /
-          60 /
-          60 /
-          24
-      );
-      let currentDate = new Date();
-      currentDate = Math.floor(
-        (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
-          1000 /
-          60 /
-          60 /
-          24
-      );
-      if (dateOfTrip - currentDate > 0) {
-        return `zostało ${dateOfTrip - currentDate} dni do mazur`;
-      } else return `mazury edition`;
-    },
-    dayOfYear: function () {
-      let date = new Date();
-      return Math.floor(
-        (date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24
-      );
+      // let dateOfTrip = new Date(2021, 7, 14);
+      // dateOfTrip = Math.floor(
+      //   (dateOfTrip - new Date(dateOfTrip.getFullYear(), 0, 0)) /
+      //     1000 /
+      //     60 /
+      //     60 /
+      //     24
+      // );
+      // let currentDate = new Date();
+      // currentDate = Math.floor(
+      //   (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
+      //     1000 /
+      //     60 /
+      //     60 /
+      //     24
+      // );
+      // if (dateOfTrip - currentDate > 0) {
+      //   return `zostało ${dateOfTrip - currentDate} dni do mazur`;
+      // } else return `mazury edition`;
+      return "aa";
     },
   },
   methods: {
     wyloguj: function () {
       this.$store.dispatch("logout");
+    },
+    tripTimer: function () {
+      let timer = setInterval(() => {
+        let now = new Date().getTime();
+        let distance = this.finishDate - now;
+        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        let hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        if (days != 0)
+          this.timeUntil = `zostało ${days}d ${hours}h ${minutes}min ${seconds}s do mazur`;
+        else this.timeUntil = "mazury edition";
+      }, 1000);
     },
     renderAddPost: function () {
       this.$store.commit("CHANGE_COMPONENT", "AddPost");
@@ -99,6 +115,9 @@ export default {
     beerRanking: function () {
       this.$store.commit("CHANGE_COMPONENT", "BeerRanking");
     },
+  },
+  mounted() {
+    this.tripTimer();
   },
 };
 </script>
