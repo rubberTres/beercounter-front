@@ -13,6 +13,16 @@
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
         <button
+          @click="report()"
+          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
+        >
+          ZGŁOŚ WYPITE
+        </button>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="mt-5 d-flex justify-content-center align-items-center">
+        <button
           @click="getFullList()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
         >
@@ -43,6 +53,9 @@ export default {
     },
     getBeers: function () {
       this.$store.commit("CHANGE_COMPONENT", "BeerRanking");
+    },
+    report: function () {
+      this.$store.commit("CHANGE_COMPONENT", "AddPost");
     },
   },
   components: { RankTable, Navbar },

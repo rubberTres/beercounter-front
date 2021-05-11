@@ -125,6 +125,21 @@ p.header{
         font-size: 0.65rem;
     }
 }
+.beerPost{
+    color: $light;
+    font-family: 'Roboto Mono', sans-serif;
+    border: 1px dotted #F7CA18;
+    @media(max-width: 660px){
+        min-height: 50px;
+        justify-content: center !important;
+    }
+    @media(max-width: 400px){
+        font-size: 0.75rem;
+    }
+    @media(max-width: 350px){
+        font-size: 0.65rem;
+    }
+}
 .fontMono{
     font-family: 'Roboto Mono', sans-serif;
 }

@@ -7,7 +7,7 @@
             <b-row class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem">
               <b-col
                 md="5"
-                class="d-flex justify-content-center align-items-center beerItem"
+                class="d-flex justify-content-center align-items-center beerPost"
               >
                 <img
                   :src="post.imgLink"
@@ -19,7 +19,7 @@
                   "
                 />
               </b-col>
-              <b-col md="7" class="beerItem">
+              <b-col md="7" class="beerPost">
                 <b-row>
                   <b-col
                     class="mt-2 d-flex justify-content-center align-items-center"
