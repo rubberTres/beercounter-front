@@ -11,7 +11,7 @@
       :users="true"
     ></rank-table>
     <b-row>
-      <b-col class="mt-5 d-flex justify-content-center align-items-center">
+      <b-col class="mt-3 d-flex justify-content-center align-items-center">
         <button
           @click="getTop()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"

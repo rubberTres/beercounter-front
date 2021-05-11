@@ -125,6 +125,8 @@ const actions = {
                 for (let j = 0; j < userTable.length; j++) {
                     if (userTable[j].drank == null) userTable[j].drank = 0
                     if (userTable[j].alcVol == null) userTable[j].alcVol = 0
+                    if (userTable[j].score == null) userTable[j].score = 0
+
                     if (state.posts[i].who == userTable[j].name) {
                         let userName = state.posts[i].who
                         let index = userTable.findIndex(x => x.name == userName);
@@ -132,10 +134,11 @@ const actions = {
                         let beerIndex = state.beerList.findIndex(x => x.beername == state.posts[i].beer)
                         userTable[index].volume = userTable[index].volume == null ? state.beerList[beerIndex].volume : userTable[index].volume + state.beerList[beerIndex].volume
                         userTable[index].alcVol += state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01
+                        userTable[index].score += parseFloat(state.beerList[beerIndex].volume) * (1 + (state.beerList[beerIndex].voltage * 0.1))
                     }
                 }
             }
-            userTable.sort((a, b) => (a.drank < b.drank) ? 1 : (a.drank === b.drank) ? ((a.alcVol < b.alcVol) ? 1 : -1) : -1)
+            userTable.sort((a, b) => (a.score < b.score) ? 1 : (a.score === b.score) ? ((a.drank < b.drank) ? 1 : -1) : -1)
             state.userRanking = userTable.filter(onlyFive)
             state.userRankingAll = userTable
             function onlyFive(element, index) {

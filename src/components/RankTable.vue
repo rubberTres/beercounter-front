@@ -57,6 +57,18 @@
         </b-col>
       </b-row>
     </div>
+    <b-row class="mt-3">
+      <b-col
+        class="d-flex justify-content-center align-content-center fontMono"
+      >
+        <button
+          @click="algorithm()"
+          class="btn btn-outline-success my-2 my-sm-0"
+        >
+          algorytm
+        </button>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -64,6 +76,11 @@
 export default {
   props: ["userTable"],
   methods: {
+    algorithm: function () {
+      alert(
+        `Punkty są liczone poprzez liczenie dla każdego wypitego piwa:\r\n\r\n  ilość ml * (1 + % alc * 1/10)`
+      );
+    },
     renderUserStats: function (val) {
       this.$store.commit("CHANGE_CHOSEN", val);
       this.$store.commit("CHANGE_COMPONENT", "UserStats");

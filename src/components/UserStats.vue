@@ -24,6 +24,11 @@
       </b-col>
     </b-row>
     <b-row>
+      <b-col class="mt-2 d-flex justify-content-center align-items-center">
+        <p class="userStats">punkty: {{ userStat.score }}</p>
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
         <p class="header">TOP BEERS</p>
       </b-col>
