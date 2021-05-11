@@ -18,7 +18,29 @@ const state = {
 
 // getters
 const getters = {
+    returnBeerTable: (state) => {
+        let beerRanking = state.beerList;
+        for (let i = 0; i < state.posts.length; i++) {
+            for (let j = 0; j < beerRanking.length; j++) {
+                if (beerRanking[j].drank == null) beerRanking[j].drank = 0;
+                if (state.posts[i].beer == beerRanking[j].beername) {
+                    beerRanking[j].drank =
+                        beerRanking[j].drank == 0 ? 1 : beerRanking[j].drank + 1;
+                }
+            }
+        }
+        beerRanking.sort((a, b) =>
+            a.drank < b.drank
+                ? 1
+                : a.drank === b.drank
+                    ? a.volume < b.volume
+                        ? 1
+                        : -1
+                    : -1
+        );
 
+        return beerRanking;
+    }
 }
 
 // actions

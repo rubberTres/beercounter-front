@@ -14,9 +14,9 @@
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav class="mr-auto fontMono">
-        <b-nav-header @click="renderMain()" class="text-center yellowFont">
+        <b-nav-text @click="renderMain()" class="text-center yellowFont">
           {{ daysUntil }}
-        </b-nav-header>
+        </b-nav-text>
       </b-navbar-nav>
       <b-navbar-nav class="ml-auto fontMono">
         <b-nav-item @click="renderMain()" class="text-center">

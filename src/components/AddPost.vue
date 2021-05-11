@@ -58,7 +58,7 @@
       <b-col class="mt-2 d-flex justify-content-center align-items-center">
         <v-select
           class="bigSelect"
-          :options="this.$store.state.beerList"
+          :options="beers"
           v-model="selected"
           label="beername"
         ></v-select>
@@ -99,11 +99,17 @@ export default {
       hasClicked: false,
     };
   },
+  computed: {
+    beers() {
+      return this.$store.getters.returnBeerTable;
+    },
+  },
   methods: {
     showBeerForm: function () {
       this.nieMaPiwa = true;
       this.beerButton = false;
     },
+
     addPost: function () {
       this.hasClicked = true;
       let uploaded = document.getElementById("file");
@@ -118,6 +124,7 @@ export default {
             fd: fd,
             beer: this.selected.beername,
           };
+          console.log(dane);
           this.$store.dispatch("imageUpload", dane);
         } else alert("Nie wybrałeś piwa!");
       } else if (uploaded.files[0] != null && !this.beerButton) {
