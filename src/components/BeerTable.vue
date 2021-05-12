@@ -27,7 +27,10 @@
       </b-col>
     </b-row>
     <div v-for="beer in beerTable" :key="beer.name">
-      <b-row class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem">
+      <b-row
+        class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem"
+        @click="renderBeerStats(beer.beername)"
+      >
         <b-col
           cols="5"
           class="d-flex justify-content-center align-items-center beerItem"
@@ -61,9 +64,9 @@
 export default {
   props: ["beerTable"],
   methods: {
-    renderbeerStats: function (val) {
-      this.$store.commit("CHANGE_CHOSEN", val);
-      this.$store.commit("CHANGE_COMPONENT", "beerStats");
+    renderBeerStats: function (val) {
+      this.$store.commit("SELECTED_BEER", val);
+      this.$store.commit("CHANGE_COMPONENT", "BeerStats");
     },
   },
 };

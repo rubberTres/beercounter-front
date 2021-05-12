@@ -106,8 +106,18 @@ p.header{
     font-weight: 600;
     background-color: #F7CA18;
     border: 2px solid #F7CA18;
+    text-align: center;
 }
 .singleItem:hover .rankItem{
+    color: $dark;
+    font-family: 'Roboto Mono', sans-serif;
+    font-weight: 600;
+	background-color: goldenrod;
+    border: 1px solid goldenrod;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+.singleItem:hover .beerItem{
     color: $dark;
     font-family: 'Roboto Mono', sans-serif;
     font-weight: 600;

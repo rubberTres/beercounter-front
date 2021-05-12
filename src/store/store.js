@@ -13,9 +13,11 @@ const state = {
     userList: [],
     beerList: [],
     chosenUser: "Oskar",
+    selectedBeer: "",
     posts: [],
     newestPosts: true,
     numberOfPosts: 5,
+    usernamesList: []
 }
 
 // getters
@@ -164,7 +166,12 @@ const actions = {
                 return index < 5
             }
         })
-    }
+    },
+    getUsernames({ commit }) {
+        axios.post("https://beer-counter-api.herokuapp.com/usersClient").then((res) => {
+            state.usernamesList = res.data
+        })
+    },
 }
 const mutations = {
     CHANGE_COMPONENT(state, name) {
@@ -183,6 +190,9 @@ const mutations = {
     },
     CHANGE_CHOSEN(state, val) {
         state.chosenUser = val
+    },
+    SELECTED_BEER(state, val) {
+        state.selectedBeer = val
     },
     GET_POSTS(state, val) {
         state.posts = val.sort((a, b) => (a.date < b.date) ? 1 : -1)
