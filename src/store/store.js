@@ -13,7 +13,9 @@ const state = {
     userList: [],
     beerList: [],
     chosenUser: "Oskar",
-    posts: []
+    posts: [],
+    newestPosts: true,
+    numberOfPosts: 5,
 }
 
 // getters
@@ -40,6 +42,19 @@ const getters = {
         );
 
         return beerRanking;
+    },
+    filterPosts: (state) => {
+        let filteredPosts = []
+        if (state.newestPosts) {
+            filteredPosts = state.posts.sort((a, b) => (a.date < b.date) ? 1 : -1)
+        } else {
+            filteredPosts = state.posts.sort((a, b) => (a.date > b.date) ? 1 : -1)
+        }
+        filteredPosts = filteredPosts.filter(controlFunction)
+        function controlFunction(element, index) {
+            return index < state.numberOfPosts
+        }
+        return filteredPosts
     }
 }
 
@@ -134,6 +149,7 @@ const actions = {
                         let beerIndex = state.beerList.findIndex(x => x.beername == state.posts[i].beer)
                         userTable[index].volume = userTable[index].volume == null ? state.beerList[beerIndex].volume : userTable[index].volume + state.beerList[beerIndex].volume
                         userTable[index].alcVol += state.beerList[beerIndex].voltage * state.beerList[beerIndex].volume * 0.01
+                        userTable[index].alcVol = Math.round(userTable[index].alcVol * 100) / 100
                         userTable[index].score += parseFloat(state.beerList[beerIndex].volume) * (1 + (state.beerList[beerIndex].voltage * 0.1))
                     }
                 }
@@ -170,6 +186,15 @@ const mutations = {
     },
     UPDATE_RAKNING(state, val) {
         state.userRanking = val
+    },
+    FILTER_UPDATE(state) {
+        state.newestPosts = !state.newestPosts
+    },
+    RESET_FILTER(state) {
+        state.numberOfPosts = 5
+    },
+    SHOW_MORE(state) {
+        state.numberOfPosts += 5
     }
 }
 

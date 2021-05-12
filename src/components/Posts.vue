@@ -3,11 +3,22 @@
     <navbar></navbar>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">NAJNOWSZE POSTY</p>
+        <p class="header">{{ headerText }} POSTY</p>
       </b-col>
     </b-row>
-
-    <div v-for="post in this.$store.state.posts" :key="post.imgLink">
+    <b-row class="mt-2 mb-2">
+      <b-col
+        class="d-flex justify-content-center align-content-center fontMono"
+      >
+        <button
+          @click="changeFilter()"
+          class="btn btn-outline-success my-2 my-sm-0"
+        >
+          {{ sort }}
+        </button>
+      </b-col>
+    </b-row>
+    <div v-for="post in filterPosts" :key="post.imgLink">
       <b-row>
         <b-col class="d-flex justify-content-center align-items-center">
           <div class="projectBox" @click="renderThisUser(post.who)">
@@ -66,6 +77,22 @@
         </b-col>
       </b-row>
     </div>
+    <b-row>
+      <b-col class="d-flex justify-content-center align-items-center">
+        <p class="yellowFont mr-5">strona {{ filterPosts.length / 5 }}</p>
+        <p class="yellowFont">{{ filterPosts.length }}/{{ postsLength }}</p>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="mt-2 mb-2 d-flex justify-content-center align-items-center">
+        <button
+          @click="showMore()"
+          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
+        >
+          POKAZ WIECEJ
+        </button>
+      </b-col>
+    </b-row>
   </div>
 </template>
 
@@ -73,6 +100,20 @@
 import Navbar from "./Navbar.vue";
 
 export default {
+  data: () => {
+    return {
+      sort: "sortuj od najstarszych",
+      headerText: "NAJNOWSZE",
+    };
+  },
+  computed: {
+    filterPosts() {
+      return this.$store.getters.filterPosts;
+    },
+    postsLength() {
+      return this.$store.state.posts.length;
+    },
+  },
   methods: {
     beerVoltage(val) {
       for (let i = 0; i < this.$store.state.beerList.length; i++) {
@@ -91,6 +132,20 @@ export default {
         this.$store.commit("CHANGE_CHOSEN", val);
         this.$store.commit("CHANGE_COMPONENT", "UserStats");
       }
+    },
+    changeFilter: function () {
+      this.$store.commit("FILTER_UPDATE");
+      this.$store.commit("RESET_FILTER");
+      if (this.$store.state.newestPosts) {
+        this.sort = "sortuj od najstarszych";
+        this.headerText = "NAJNOWSZE";
+      } else {
+        this.sort = "sortuj od najnowszych";
+        this.headerText = "NAJSTARSZE";
+      }
+    },
+    showMore: function () {
+      this.$store.commit("SHOW_MORE");
     },
   },
   components: { Navbar },
