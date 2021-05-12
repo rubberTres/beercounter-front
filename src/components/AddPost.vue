@@ -111,7 +111,6 @@ export default {
     },
 
     addPost: function () {
-      this.hasClicked = true;
       let uploaded = document.getElementById("file");
       let fd = new FormData();
       fd.append("file", uploaded.files[0]);
@@ -119,6 +118,7 @@ export default {
 
       if (uploaded.files[0] != null && this.beerButton) {
         if (this.selected != null) {
+          this.hasClicked = true;
           let dane = {
             who: this.$store.state.username,
             fd: fd,
@@ -141,6 +141,7 @@ export default {
           !isNaN(parseFloat(beerAlc)) &&
           !isNaN(parseInt(beerVolume))
         ) {
+          this.hasClicked = true;
           let object = {
             name: beerName,
             voltage: parseFloat(beerAlc),

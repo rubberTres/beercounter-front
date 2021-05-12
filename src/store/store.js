@@ -115,15 +115,18 @@ const actions = {
         const url = " https://api.cloudinary.com/v1_1/jebacpolicje-pl/upload";
 
         axios.post(url, dane.fd).then((res) => {
-            let dateNow = new Date().toISOString()
-            dateNow = dateNow.split("T")
-            dateNow[1] = dateNow[1].split(".")
+            let dateNow = new Date().toLocaleString("pl-PL", {
+                timeZone: "Europe/Warsaw",
+            });
+            dateNow = dateNow.split(".");
+            dateNow[2] = dateNow[2].split(",");
+            dateNow = `${dateNow[2][0]}-${dateNow[1]}-${dateNow[0]}${dateNow[2][1]}`;
 
             let postData = {
                 who: dane.who,
                 beer: dane.beer,
                 link: res.data['secure_url'],
-                date: `${dateNow[0]} ${dateNow[1][0]}`
+                date: dateNow
             }
             axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
                 alert("Dodałeś nowego posta!")
