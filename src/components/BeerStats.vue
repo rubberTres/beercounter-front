@@ -27,7 +27,7 @@
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">TOP BEERS</p>
+        <p class="header">TOP USERS</p>
       </b-col>
     </b-row>
     <beer-rank-table :userTable="rankingLudzi"></beer-rank-table>
