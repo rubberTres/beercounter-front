@@ -26,6 +26,11 @@
       </b-col>
     </b-row>
     <b-row>
+      <b-col class="mt-2 d-flex justify-content-center align-items-center">
+        <p class="userStats">wartość punktowa: {{ userStat.score }}</p>
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
         <p class="header">TOP USERS</p>
       </b-col>
@@ -99,9 +104,13 @@ export default {
       return beerRanking;
     },
     userStat() {
-      return this.$store.getters.returnBeerTable.find(
+      let x = this.$store.getters.returnBeerTable.find(
         (x) => x.beername == this.$store.state.selectedBeer
       );
+
+      x.score =
+        Math.round(parseFloat(x.volume) * (1 + x.voltage * 0.1) * 100) / 100;
+      return x;
     },
   },
   methods: {
