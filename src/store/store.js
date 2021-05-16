@@ -129,11 +129,11 @@ const actions = {
             dateNow = dateNow.split(".");
             dateNow[2] = dateNow[2].split(",");
             dateNow = `${dateNow[2][0]}-${dateNow[1]}-${dateNow[0]}${dateNow[2][1]}`;
-            console.log(res.data)
+
             let postData = {
                 who: dane.who,
                 beer: dane.beer,
-                link: res.data.link,
+                link: res.data.data.link,
                 date: dateNow,
                 desc: dane.desc
             }
@@ -142,6 +142,7 @@ const actions = {
     },
     uploadPost({ commit }, dane) {
         axios.post("https://beer-counter-api.herokuapp.com/upload", dane).then((res) => {
+            console.log(dane)
             alert("Dodałeś nowego posta!")
             commit("CHANGE_COMPONENT", "Posts")
         })
