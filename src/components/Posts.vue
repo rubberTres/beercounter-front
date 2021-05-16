@@ -64,6 +64,13 @@
                     <p>pojemność: {{ beerVolume(post.beer) }}ml</p>
                   </b-col>
                 </b-row>
+                <b-row v-if="descExists(post.desc)">
+                  <b-col
+                    class="mt-2 d-flex justify-content-center align-items-center"
+                  >
+                    <p>opis: {{ post.desc }}</p>
+                  </b-col>
+                </b-row>
                 <b-row>
                   <b-col
                     class="mt-2 d-flex justify-content-center align-items-center"
@@ -120,6 +127,9 @@ export default {
         if (this.$store.state.beerList[i].beername == val)
           return this.$store.state.beerList[i].voltage;
       }
+    },
+    descExists(val) {
+      return val != "brak opisu" && val != undefined;
     },
     beerVolume(val) {
       for (let i = 0; i < this.$store.state.beerList.length; i++) {
