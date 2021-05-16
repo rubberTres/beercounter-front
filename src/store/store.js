@@ -132,6 +132,7 @@ const actions = {
                 'Accept': 'application/json',
             },
             withCredentials: true,
+            crossDomain: true
         })
         axiosInstance.post('login', dane).then((res) => {
             console.log(JSON.stringify(res.data))
@@ -159,22 +160,6 @@ const actions = {
                 commit("CHANGE_COMPONENT", "Posts")
             })
         })
-    },
-    imgurUpload({ commit }, dane) {
-        console.log(dane)
-        let myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer 59410b4fa022cfa16387f97d9627d6979946a5e2")
-        const options = {
-            method: 'POST',
-            headers: myHeaders,
-            data: dane
-        };
-
-        axios.request('https://api.imgur.com/3/image', options).then(function (response) {
-            console.log(response.data);
-        }).catch(function (error) {
-            console.error(error);
-        });
     },
     getUserRanking({ commit }) {
         axios.post("https://beer-counter-api.herokuapp.com/usersClient").then((res) => {
