@@ -122,7 +122,7 @@ const actions = {
             },
             crossDomain: true
         })
-        axiosInstance.post('image', dane).then((res) => {
+        axiosInstance.post('image', dane.fd).then((res) => {
             let dateNow = new Date().toLocaleString("pl-PL", {
                 timeZone: "Europe/Warsaw",
             });
