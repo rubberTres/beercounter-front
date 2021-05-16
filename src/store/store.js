@@ -122,6 +122,10 @@ const actions = {
             },
             crossDomain: true
         })
+        let secondInstance = axios.create({
+            baseURL: 'https://beer-counter-api.herokuapp.com/',
+            crossDomain: true
+        })
         axiosInstance.post('image', dane.fd).then((res) => {
             let dateNow = new Date().toLocaleString("pl-PL", {
                 timeZone: "Europe/Warsaw",
@@ -137,7 +141,7 @@ const actions = {
                 date: dateNow,
                 desc: dane.desc
             }
-            axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
+            secondInstance.post("upload", postData).then((res2) => {
                 alert("Dodałeś nowego posta!")
                 commit("CHANGE_COMPONENT", "Posts")
             })
