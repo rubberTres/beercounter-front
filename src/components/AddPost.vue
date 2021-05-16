@@ -93,7 +93,7 @@
     <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
-          @click="uploadImage()"
+          @click="addPost()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
           :disabled="hasClicked"
         >
