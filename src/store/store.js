@@ -1,7 +1,6 @@
 import axios from 'axios'
 import Vuex from 'vuex'
 import Vue from 'vue'
-axios.defaults.withCredentials = true
 Vue.use(Vuex);
 
 const state = {
@@ -115,6 +114,8 @@ const actions = {
         })
     },
     imgurUpload({ commit }, dane) {
+        axios.defaults.withCredentials = true
+
         // let myHead = new Headers()
         // myHead.append("Authorization", "Bearer 651c8f55a66e0542138c156668ec5e9ee502bafe")
         // const options = {
