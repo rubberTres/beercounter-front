@@ -101,17 +101,6 @@
         </button>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col class="mt-5 d-flex justify-content-center align-items-center">
-        <button
-          @click="uploadImage()"
-          class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
-          :disabled="hasClicked"
-        >
-          test button
-        </button>
-      </b-col>
-    </b-row>
   </div>
 </template>
 
@@ -148,16 +137,10 @@ export default {
       this.nieMaPiwa = !this.nieMaPiwa;
       this.beerButton = !this.beerButton;
     },
-    uploadImage: function () {
-      let uploaded = document.getElementById("file");
-      let fd = new FormData();
-      fd.append("image", uploaded.files[0]);
-      this.$store.dispatch("imgurUpload", fd);
-    },
     addPost: function () {
       let uploaded = document.getElementById("file");
       let fd = new FormData();
-      fd.append("file", uploaded.files[0]);
+      fd.append("image", uploaded.files[0]);
       fd.append("upload_preset", "penisjs");
       if (uploaded.files[0] != null && this.beerButton) {
         if (this.selected != null) {
