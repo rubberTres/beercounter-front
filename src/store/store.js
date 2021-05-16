@@ -114,7 +114,7 @@ const actions = {
         })
     },
     imgurUpload({ commit }, dane) {
-        axios.defaults.withCredentials = true
+        // axios.defaults.withCredentials = true
 
         // let myHead = new Headers()
         // myHead.append("Authorization", "Bearer 651c8f55a66e0542138c156668ec5e9ee502bafe")
@@ -131,7 +131,7 @@ const actions = {
                 'Authorization': 'Client-ID 62e96c3894fe740',
                 'Accept': 'application/json',
             },
-            withCredentials: true,
+            // withCredentials: true,
             crossDomain: true
         })
         axiosInstance.post('login', dane).then((res) => {
