@@ -130,10 +130,8 @@ const actions = {
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
-            body: dane,
-            redirect: 'follow'
         };
-        fetch("https://api.imgur.com/3/upload", requestOptions)
+        fetch("https://api.imgur.com/3/upload", dane, requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
