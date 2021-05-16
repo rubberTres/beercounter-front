@@ -125,14 +125,14 @@ const actions = {
         //     console.log(res.data)
         // })
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Bearer 651c8f55a66e0542138c156668ec5e9ee502bafe");
+        myHeaders.append("Authorization", "Client-ID 62e96c3894fe740");
         var requestOptions = {
             method: 'POST',
             headers: myHeaders,
             body: dane,
             redirect: 'follow'
         };
-        fetch("https://api.imgur.com/3/image", requestOptions)
+        fetch("https://api.imgur.com/3/upload", requestOptions)
             .then(response => response.text())
             .then(result => console.log(result))
             .catch(error => console.log('error', error));
