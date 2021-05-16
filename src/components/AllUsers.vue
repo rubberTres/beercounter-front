@@ -47,6 +47,7 @@ export default {
   },
   components: { RankTable, Navbar },
   mounted() {
+    this.$store.dispatch("getUsernames");
     this.$store.dispatch("getPosts");
     this.$store.dispatch("getBeerList");
     this.$store.dispatch("getUserRanking");

@@ -17,7 +17,8 @@ const state = {
     posts: [],
     newestPosts: true,
     numberOfPosts: 5,
-    usernamesList: []
+    usernamesList: [],
+    currentDate: "month"
 }
 
 // getters
@@ -57,7 +58,7 @@ const getters = {
             return index < state.numberOfPosts
         }
         return filteredPosts
-    }
+    },
 }
 
 // actions
@@ -113,9 +114,19 @@ const actions = {
             commit("GET_POSTS", res.data)
         })
     },
+    imgurUpload({ commit }, dane) {
+        let myHead = new Headers()
+        myHead.append("Authorization", "Client-ID 47ab806908e8eea")
+        const options = {
+            headers: myHead,
+            body: dane
+        }
+        axios.post("https://api.imgur.com/3/image/", options).then((res) => {
+            console.log(res.data)
+        })
+    },
     imageUpload({ commit }, dane) {
         const url = " https://api.cloudinary.com/v1_1/jebacpolicje-pl/upload";
-
         axios.post(url, dane.fd).then((res) => {
             let dateNow = new Date().toLocaleString("pl-PL", {
                 timeZone: "Europe/Warsaw",
@@ -136,6 +147,22 @@ const actions = {
                 commit("CHANGE_COMPONENT", "Posts")
             })
         })
+    },
+    imgurUpload({ commit }, dane) {
+        console.log(dane)
+        let myHeaders = new Headers();
+        myHeaders.append("Authorization", "Bearer 59410b4fa022cfa16387f97d9627d6979946a5e2")
+        const options = {
+            method: 'POST',
+            headers: myHeaders,
+            data: dane
+        };
+
+        axios.request('https://api.imgur.com/3/image', options).then(function (response) {
+            console.log(response.data);
+        }).catch(function (error) {
+            console.error(error);
+        });
     },
     getUserRanking({ commit }) {
         axios.post("https://beer-counter-api.herokuapp.com/usersClient").then((res) => {

@@ -53,30 +53,7 @@ export default {
       finishDate: new Date("Aug 14, 2021 08:00:00").getTime(),
     };
   },
-  computed: {
-    daysUntil: function () {
-      // let dateOfTrip = new Date(2021, 7, 14);
-      // dateOfTrip = Math.floor(
-      //   (dateOfTrip - new Date(dateOfTrip.getFullYear(), 0, 0)) /
-      //     1000 /
-      //     60 /
-      //     60 /
-      //     24
-      // );
-      // let currentDate = new Date();
-      // currentDate = Math.floor(
-      //   (currentDate - new Date(currentDate.getFullYear(), 0, 0)) /
-      //     1000 /
-      //     60 /
-      //     60 /
-      //     24
-      // );
-      // if (dateOfTrip - currentDate > 0) {
-      //   return `zostało ${dateOfTrip - currentDate} dni do mazur`;
-      // } else return `mazury edition`;
-      return "aa";
-    },
-  },
+  computed: {},
   methods: {
     wyloguj: function () {
       this.$store.dispatch("logout");
