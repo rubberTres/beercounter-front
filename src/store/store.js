@@ -124,23 +124,16 @@ const actions = {
         // axios.post("https://api.imgur.com/3/image/", options).then((res) => {
         //     console.log(res.data)
         // })
-        var config = {
-            method: 'post',
-            url: 'https://api.imgur.com/3/image',
+        let axiosInstance = axios.create({
+            baseURL: 'https://api.imgur.com/3/',
             headers: {
                 'Authorization': 'Client-ID 62e96c3894fe740}',
-                ...data.getHeaders()
-            },
-            data: data
-        };
-
-        axios(config)
-            .then(function (response) {
-                console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                'Accept': 'application/json',
+            }
+        })
+        axiosInstance('login', dane).then((res) => {
+            console.log(JSON.stringify(res.data))
+        })
     },
     imageUpload({ commit }, dane) {
         const url = " https://api.cloudinary.com/v1_1/jebacpolicje-pl/upload";
