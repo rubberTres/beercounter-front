@@ -1,7 +1,7 @@
 import axios from 'axios'
 import Vuex from 'vuex'
 import Vue from 'vue'
-
+axios.defaults.withCredentials = true
 Vue.use(Vuex);
 
 const state = {
