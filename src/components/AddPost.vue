@@ -60,7 +60,7 @@
           class="bigSelect"
           :options="beers"
           v-model="selected"
-          label="beername"
+          label="label"
         ></v-select>
       </b-col>
     </b-row>
@@ -118,7 +118,11 @@ export default {
   },
   computed: {
     beers() {
-      return this.$store.getters.returnBeerTable;
+      let arr = this.$store.getters.returnBeerTable;
+      for (let i = 0; i < arr.length; i++) {
+        arr[i].label = `${arr[i].beername} | ${arr[i].volume}ml`;
+      }
+      return arr;
     },
     text() {
       if (this.beerButton == false) {
