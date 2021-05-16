@@ -129,9 +129,10 @@ const actions = {
             headers: {
                 'Authorization': 'Client-ID 62e96c3894fe740',
                 'Accept': 'application/json',
-            }
+            },
+            mode: "cors"
         })
-        axiosInstance('login', dane).then((res) => {
+        axiosInstance.post('login', dane).then((res) => {
             console.log(JSON.stringify(res.data))
         })
     },
