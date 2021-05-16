@@ -104,7 +104,7 @@
     <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
-          @click="imageUpload()"
+          @click="uploadImage()"
           class="btn btn-sm animated-button mainButton bigButtonForDrunkPeople rounded-0"
           :disabled="hasClicked"
         >
