@@ -134,7 +134,7 @@ const actions = {
             // withCredentials: true,
             crossDomain: true
         })
-        axiosInstance.post('login', dane).then((res) => {
+        axiosInstance.post('image', dane).then((res) => {
             console.log(JSON.stringify(res.data))
         })
     },
