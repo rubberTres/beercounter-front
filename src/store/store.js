@@ -126,7 +126,15 @@ const actions = {
             baseURL: 'https://beer-counter-api.herokuapp.com/',
             crossDomain: true
         })
-        axiosInstance.post('image', dane.fd).then((res) => {
+        let config = {
+            headers: {
+                'Authorization': 'Client-ID 62e96c3894fe740',
+                'Accept': 'application/json',
+            },
+            crossDomain: true,
+            body: dane.fd
+        }
+        axios.post('https://api.imgur.com/3/image', config).then((res) => {
             let dateNow = new Date().toLocaleString("pl-PL", {
                 timeZone: "Europe/Warsaw",
             });
@@ -141,7 +149,7 @@ const actions = {
                 date: dateNow,
                 desc: dane.desc
             }
-            secondInstance.post("upload", postData).then((res2) => {
+            axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
                 alert("Dodałeś nowego posta!")
                 commit("CHANGE_COMPONENT", "Posts")
             })
