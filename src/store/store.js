@@ -141,7 +141,7 @@ const actions = {
         })
     },
     uploadPost({ commit }, dane) {
-        axios.post("upload", dane).then((res) => {
+        axios.post("https://beer-counter-api.herokuapp.com/upload", dane).then((res) => {
             alert("Dodałeś nowego posta!")
             commit("CHANGE_COMPONENT", "Posts")
         })
