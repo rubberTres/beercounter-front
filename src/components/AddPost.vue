@@ -64,13 +64,29 @@
         ></v-select>
       </b-col>
     </b-row>
-    <b-row v-if="beerButton">
+    <b-row>
+      <b-col class="mt-2 d-flex justify-content-center align-items-center">
+        <div class="formHelper">
+          <input
+            type="text"
+            name="desc"
+            placeholder="Opis"
+            class="formInput"
+            maxlength="100"
+            v-model="desc"
+            style="padding-right: 22px"
+          />
+          <label id="desc">{{ desc.length }}/100</label>
+        </div>
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <button
           @click="showBeerForm()"
           class="btn btn-sm animated-button mainButton smol rounded-0"
         >
-          Brakuje mojego piwa
+          {{ text }}
         </button>
       </b-col>
     </b-row>
@@ -97,17 +113,25 @@ export default {
       beerButton: true,
       selected: null,
       hasClicked: false,
+      desc: "",
     };
   },
   computed: {
     beers() {
       return this.$store.getters.returnBeerTable;
     },
+    text() {
+      if (this.beerButton == false) {
+        return "Wróć do listy piw";
+      } else {
+        return "Brakuje mojego piwa";
+      }
+    },
   },
   methods: {
     showBeerForm: function () {
-      this.nieMaPiwa = true;
-      this.beerButton = false;
+      this.nieMaPiwa = !this.nieMaPiwa;
+      this.beerButton = !this.beerButton;
     },
 
     addPost: function () {
@@ -115,7 +139,6 @@ export default {
       let fd = new FormData();
       fd.append("file", uploaded.files[0]);
       fd.append("upload_preset", "penisjs");
-
       if (uploaded.files[0] != null && this.beerButton) {
         if (this.selected != null) {
           this.hasClicked = true;
@@ -123,6 +146,7 @@ export default {
             who: this.$store.state.username,
             fd: fd,
             beer: this.selected.beername,
+            desc: this.desc == "" ? "brak opisu" : this.desc,
           };
           console.log(dane);
           this.$store.dispatch("imageUpload", dane);
@@ -152,6 +176,7 @@ export default {
             who: this.$store.state.username,
             fd: fd,
             beer: beerName,
+            desc: this.desc == "" ? "brak opisu" : this.desc,
           };
           this.$store.dispatch("imageUpload", dane);
         } else alert("Złe wartości w piwie! Czy na pewno wypełniłeś wszystko?");

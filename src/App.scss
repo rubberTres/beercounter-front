@@ -99,6 +99,14 @@ p.header{
     display: inline-block;
     text-overflow: ellipsis;
 }
+.cut2{
+    justify-self: flex-start;
+    white-space: wrap;
+    overflow: hidden;
+    display: inline-block;
+    text-overflow: ellipsis;
+    font-size: 0.65rem
+}
 
 .rankHeader{
     color: $dark;
@@ -210,6 +218,22 @@ input[type=file]{
         left: 85%;
     }
 }
+.formHelper label#desc{
+    font-family: 'Roboto Mono', sans-serif;
+    color: goldenrod;
+    position: absolute;
+    top: 4vh;
+    left: 89%;
+    @media(max-width: 360px){
+        display: block !important;
+        font-size: 0.65rem;
+    }
+    @media(max-width: 437px){
+        position: absolute;
+        top: 4vh;
+        left: 85%;
+    }
+}
 .userStats{
     width: 30vw;
     font-size: 1.5rem;
@@ -240,4 +264,10 @@ input[type=file]{
     @media(max-width: 1200px){
         font-size: 1rem;
     }
+}
+.niceWrap{
+    margin-bottom: 50px !important;
+}
+.niceWrapBeer{
+    margin-bottom: 100px !important;
 }

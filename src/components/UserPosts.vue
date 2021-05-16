@@ -3,7 +3,7 @@
     <div v-for="post in this.$store.state.posts" :key="post.imgLink">
       <b-row v-if="ifChosen(post.who)">
         <b-col class="d-flex justify-content-center align-items-center">
-          <div class="projectBox">
+          <div class="projectBox" :class="{ niceWrap: descExists(post.desc) }">
             <b-row class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem">
               <b-col
                 md="5"
@@ -41,6 +41,13 @@
                     <p>pojemność: {{ beerVolume(post.beer) }}ml</p>
                   </b-col>
                 </b-row>
+                <b-row v-if="descExists(post.desc)">
+                  <b-col
+                    class="mt-2 d-flex justify-content-center align-items-center text-center cut2"
+                  >
+                    <p>opis: {{ post.desc }}</p>
+                  </b-col>
+                </b-row>
                 <b-row>
                   <b-col
                     class="mt-2 d-flex justify-content-center align-items-center"
@@ -65,6 +72,9 @@ export default {
         if (this.$store.state.beerList[i].beername == val)
           return this.$store.state.beerList[i].voltage;
       }
+    },
+    descExists(val) {
+      return val != "brak opisu" && val != undefined;
     },
     beerVolume(val) {
       for (let i = 0; i < this.$store.state.beerList.length; i++) {

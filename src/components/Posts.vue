@@ -21,7 +21,11 @@
     <div v-for="post in filterPosts" :key="post.imgLink">
       <b-row>
         <b-col class="d-flex justify-content-center align-items-center">
-          <div class="projectBox" @click="renderThisUser(post.who)">
+          <div
+            class="projectBox"
+            :class="{ niceWrap: descExists(post.desc) }"
+            @click="renderThisUser(post.who)"
+          >
             <b-row>
               <b-col class="ml-2 mr-2 ml-lg-5 mr-lg-5 singleItem">
                 <p class="postTitle">{{ post.who }}</p>
@@ -66,7 +70,7 @@
                 </b-row>
                 <b-row v-if="descExists(post.desc)">
                   <b-col
-                    class="mt-2 d-flex justify-content-center align-items-center"
+                    class="mt-2 d-flex justify-content-center align-items-center text-center cut2"
                   >
                     <p>opis: {{ post.desc }}</p>
                   </b-col>

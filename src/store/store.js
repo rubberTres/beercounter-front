@@ -128,7 +128,8 @@ const actions = {
                 who: dane.who,
                 beer: dane.beer,
                 link: res.data['secure_url'],
-                date: dateNow
+                date: dateNow,
+                desc: dane.desc
             }
             axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
                 alert("Dodałeś nowego posta!")
