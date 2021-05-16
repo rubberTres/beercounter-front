@@ -113,7 +113,7 @@ const actions = {
             commit("GET_POSTS", res.data)
         })
     },
-    imageUpload({ commit }, dane) {
+    imageUpload({ dispatch }, dane) {
         let axiosInstance = axios.create({
             baseURL: 'https://api.imgur.com/3/',
             headers: {
@@ -122,19 +122,7 @@ const actions = {
             },
             crossDomain: true
         })
-        let secondInstance = axios.create({
-            baseURL: 'https://beer-counter-api.herokuapp.com/',
-            crossDomain: true
-        })
-        let config = {
-            headers: {
-                'Authorization': 'Client-ID 62e96c3894fe740',
-                'Accept': 'application/json',
-            },
-            crossDomain: true,
-            body: dane.fd
-        }
-        axios.post('https://api.imgur.com/3/image', config).then((res) => {
+        axiosInstance.post('image', dane.fd).then((res) => {
             let dateNow = new Date().toLocaleString("pl-PL", {
                 timeZone: "Europe/Warsaw",
             });
@@ -149,10 +137,13 @@ const actions = {
                 date: dateNow,
                 desc: dane.desc
             }
-            axios.post("https://beer-counter-api.herokuapp.com/upload", postData).then((res) => {
-                alert("Dodałeś nowego posta!")
-                commit("CHANGE_COMPONENT", "Posts")
-            })
+            dispatch("uploadPost", postData)
+        })
+    },
+    uploadPost({ commit }, dane) {
+        axios.post("upload", dane).then((res) => {
+            alert("Dodałeś nowego posta!")
+            commit("CHANGE_COMPONENT", "Posts")
         })
     },
     getUserRanking({ commit }) {
