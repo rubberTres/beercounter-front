@@ -116,7 +116,7 @@ const actions = {
     },
     imgurUpload({ commit }, dane) {
         let myHead = new Headers()
-        myHead.append("Authorization", "Client-ID 47ab806908e8eea")
+        myHead.append("Authorization", "Bearer 651c8f55a66e0542138c156668ec5e9ee502bafe")
         const options = {
             headers: myHead,
             body: dane
