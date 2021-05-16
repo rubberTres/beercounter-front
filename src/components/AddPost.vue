@@ -162,10 +162,16 @@ export default {
           .value;
         let beerAlc = document.querySelector("input[type=text][name=procent]")
           .value;
+        let duplicate = false;
+        for (let i = 0; i < this.$store.getters.returnBeerTable.length; i++) {
+          if (beerName == this.$store.getters.returnBeerTable[i].beername)
+            duplicate = true;
+        }
         if (
           beerName != "" &&
           beerVolume != "" &&
           beerAlc != "" &&
+          !duplicate &&
           !isNaN(parseFloat(beerAlc)) &&
           !isNaN(parseInt(beerVolume))
         ) {
@@ -183,6 +189,8 @@ export default {
             desc: this.desc == "" ? "brak opisu" : this.desc,
           };
           this.$store.dispatch("imageUpload", dane);
+        } else if (duplicate) {
+          alert("Jest już piwo o tej nazwie!");
         } else alert("Złe wartości w piwie! Czy na pewno wypełniłeś wszystko?");
       } else alert("Nie przesłałeś pliku");
     },
