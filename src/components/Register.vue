@@ -75,6 +75,8 @@ export default {
       let password = document.querySelector("input[type=password][name=pass")
         .value;
       let kod = document.querySelector("input[type=text][name=code").value;
+      console.log(kod);
+      console.log(process.env.PASSPHRASE);
       if (kod == process.env.PASSPHRASE) {
         if (login != "" && password != "") {
           let dane = {
