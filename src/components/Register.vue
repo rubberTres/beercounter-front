@@ -28,6 +28,17 @@
       </b-col>
     </b-row>
     <b-row>
+      <b-col class="mt-3 d-flex justify-content-center align-items-center">
+        <input
+          type="text"
+          name="code"
+          placeholder="Haslo dostepowe"
+          class="formInput"
+          required
+        />
+      </b-col>
+    </b-row>
+    <b-row>
       <b-col class="mt-5 d-flex justify-content-center align-items-center">
         <!-- <button
           @click="register()"
@@ -63,23 +74,26 @@ export default {
       let login = document.querySelector("input[type=text][name=login").value;
       let password = document.querySelector("input[type=password][name=pass")
         .value;
-      if (login != "" && password != "") {
-        let dane = {
-          name: login,
-          password: password,
-        };
-        let pom = false;
-        for (let i = 0; i < this.$store.state.userList.length; i++) {
-          if (login == this.$store.state.userList[i].name) {
-            pom = true;
-            alert("JEST JUŻ USER O TYM LOGINIE");
+      let kod = document.querySelector("input[type=text][name=code").value;
+      if (kod == process.env.PASSPHRASE) {
+        if (login != "" && password != "") {
+          let dane = {
+            name: login,
+            password: password,
+          };
+          let pom = false;
+          for (let i = 0; i < this.$store.state.userList.length; i++) {
+            if (login == this.$store.state.userList[i].name) {
+              pom = true;
+              alert("JEST JUŻ USER O TYM LOGINIE");
+            }
           }
+          if (!pom) {
+            this.$store.dispatch("register", dane);
+          }
+        } else {
+          alert("nie wpisałeś loginu/hasła");
         }
-        if (!pom) {
-          this.$store.dispatch("register", dane);
-        }
-      } else {
-        alert("nie wpisałeś loginu/hasła");
       }
     },
     changeToLogin: function () {

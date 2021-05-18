@@ -87,10 +87,21 @@ const actions = {
         alert("Zostałeś wylogowany.")
     },
     checkIfLogged({ commit }) {
+        let checkTable = []
+        let control = false
+        axios.post("https://beer-counter-api.herokuapp.com/usersClient").then((res) => {
+            checkTable = res.data
+        })
         axios.post("https://beer-counter-api.herokuapp.com/login/authenticate", { dane: `Bearer ${localStorage.getItem('token')}` }).then((res) => {
             if (res.data.text != "err") {
-                commit("LOGGED", res.data.data.user.name)
-                commit("CHANGE_COMPONENT", "Main")
+                for (let i = 0; i < checkTable.length; i++) {
+                    if (res.data.data.user.name == checkTable[i].username) {
+                        control = true
+                        commit("LOGGED", res.data.data.user.name)
+                        commit("CHANGE_COMPONENT", "Main")
+                    }
+                }
+                if (!control) commit("CHANGE_COMPONENT", "Login")
             } else {
                 commit("CHANGE_COMPONENT", "Login")
             }
