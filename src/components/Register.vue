@@ -75,8 +75,6 @@ export default {
       let password = document.querySelector("input[type=password][name=pass")
         .value;
       let kod = document.querySelector("input[type=text][name=code").value;
-      console.log(kod);
-      console.log(process.env.VUE_APP_PASSPHRASE);
       if (kod == process.env.VUE_APP_PASSPHRASE) {
         if (login != "" && password != "") {
           let dane = {
@@ -96,7 +94,7 @@ export default {
         } else {
           alert("nie wpisałeś loginu/hasła");
         }
-      }
+      } else alert("ZŁE HASŁO DOSTĘPU");
     },
     changeToLogin: function () {
       this.$store.commit("CHANGE_COMPONENT", "Login");
