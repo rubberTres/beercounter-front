@@ -128,7 +128,7 @@ const actions = {
         let axiosInstance = axios.create({
             baseURL: 'https://api.imgur.com/3/',
             headers: {
-                'Authorization': `Client-ID ${process.env.IMGUR_ID}`,
+                'Authorization': 'Client-ID 62e96c3894fe740',
                 'Accept': 'application/json',
             },
             crossDomain: true
