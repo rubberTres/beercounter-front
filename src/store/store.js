@@ -95,7 +95,7 @@ const actions = {
         axios.post("https://beer-counter-api.herokuapp.com/login/authenticate", { dane: `Bearer ${localStorage.getItem('token')}` }).then((res) => {
             if (res.data.text != "err") {
                 for (let i = 0; i < checkTable.length; i++) {
-                    if (res.data.data.user.name == checkTable[i].username) {
+                    if (res.data.data.user.name == checkTable[i].name) {
                         control = true
                         commit("LOGGED", res.data.data.user.name)
                         commit("CHANGE_COMPONENT", "Main")
@@ -128,7 +128,7 @@ const actions = {
         let axiosInstance = axios.create({
             baseURL: 'https://api.imgur.com/3/',
             headers: {
-                'Authorization': `Client-ID 62e96c3894fe740`,
+                'Authorization': `Client-ID ${process.env.VUE_APP_IMGUR_ID}`,
                 'Accept': 'application/json',
             },
             crossDomain: true
