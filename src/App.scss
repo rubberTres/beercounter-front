@@ -64,6 +64,9 @@ p.header{
     font-family: 'Roboto Mono', sans-serif;
     font-size: 2rem;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 
@@ -256,6 +259,9 @@ input[type=file]{
     @media(max-width: 400px){
         font-size: 1rem;
     }
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .yellowFont{
     color: goldenrod !important;
