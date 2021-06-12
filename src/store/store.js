@@ -228,7 +228,7 @@ const mutations = {
         state.posts = val.sort((a, b) => {
             let aDate = new Date(a.date)
             let bDate = new Date(b.date)
-            return aDate > bDate ? 1 : -1
+            return aDate < bDate ? 1 : -1
         })
     },
     UPDATE_RAKNING(state, val) {
