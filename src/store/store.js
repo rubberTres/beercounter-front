@@ -49,14 +49,18 @@ const getters = {
         let filteredPosts = []
         if (state.newestPosts) {
             filteredPosts = state.posts.sort((a, b) => {
-                let x = new Date(a.date)
-                let y = new Date(b.date)
+                let arr = a.date.split(/[\s:-]+/)
+                let x = new Date(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
+                arr = b.date.split(/[\s:-]+/)
+                let y = new Date(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
                 return (x < y) ? 1 : - 1
             })
         } else {
             filteredPosts = state.posts.sort((a, b) => {
-                let x = new Date(a.date)
-                let y = new Date(b.date)
+                let arr = a.date.split(/[\s:-]+/)
+                let x = new Date(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
+                arr = b.date.split(/[\s:-]+/)
+                let y = new Date(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
                 return (x > y) ? 1 : -1
             })
         }
@@ -226,8 +230,10 @@ const mutations = {
     },
     GET_POSTS(state, val) {
         state.posts = val.sort((a, b) => {
-            let x = new Date(a.date)
-            let y = new Date(b.date)
+            let arr = a.date.split(/[\s:-]+/)
+            let x = new Date(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
+            arr = b.date.split(/[\s:-]+/)
+            let y = new Date(arr[0], arr[1], arr[2], arr[3], arr[4], arr[5])
             return (x < y) ? 1 : -1
         })
     },
