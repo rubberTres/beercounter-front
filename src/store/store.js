@@ -48,9 +48,17 @@ const getters = {
     filterPosts: (state) => {
         let filteredPosts = []
         if (state.newestPosts) {
-            filteredPosts = state.posts.sort((a, b) => (a.date < b.date) ? 1 : -1)
+            filteredPosts = state.posts.sort((a, b) => {
+                let aDate = new Date(a.date)
+                let bDate = new Date(b.date)
+                return aDate < bDate ? 1 : -1
+            })
         } else {
-            filteredPosts = state.posts.sort((a, b) => (a.date > b.date) ? 1 : -1)
+            filteredPosts = state.posts.sort((a, b) => {
+                let aDate = new Date(a.date)
+                let bDate = new Date(b.date)
+                return aDate > bDate ? 1 : -1
+            })
         }
         filteredPosts = filteredPosts.filter(controlFunction)
         function controlFunction(element, index) {
@@ -217,7 +225,11 @@ const mutations = {
         state.selectedBeer = val
     },
     GET_POSTS(state, val) {
-        state.posts = val.sort((a, b) => (a.date < b.date) ? 1 : -1)
+        state.posts = val.sort((a, b) => {
+            let aDate = new Date(a.date)
+            let bDate = new Date(b.date)
+            return aDate < bDate ? 1 : -1
+        })
     },
     UPDATE_RAKNING(state, val) {
         state.userRanking = val
