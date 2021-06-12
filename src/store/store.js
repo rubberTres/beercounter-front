@@ -50,14 +50,18 @@ const getters = {
         if (state.newestPosts) {
             filteredPosts = state.posts.sort((a, b) => {
                 let aDate = new Date(a.date)
+                let x = aDate.getTime()
                 let bDate = new Date(b.date)
-                return aDate < bDate ? 1 : -1
+                let y = bDate.getTime()
+                return x < y ? 1 : -1
             })
         } else {
             filteredPosts = state.posts.sort((a, b) => {
                 let aDate = new Date(a.date)
+                let x = aDate.getTime()
                 let bDate = new Date(b.date)
-                return aDate > bDate ? 1 : -1
+                let y = bDate.getTime()
+                return x > y ? 1 : -1
             })
         }
         filteredPosts = filteredPosts.filter(controlFunction)
@@ -227,8 +231,10 @@ const mutations = {
     GET_POSTS(state, val) {
         state.posts = val.sort((a, b) => {
             let aDate = new Date(a.date)
+            let x = aDate.getTime()
             let bDate = new Date(b.date)
-            return aDate < bDate ? 1 : -1
+            let y = bDate.getTime()
+            return x < y ? 1 : -1
         })
     },
     UPDATE_RAKNING(state, val) {
