@@ -51,13 +51,13 @@ const getters = {
             filteredPosts = state.posts.sort((a, b) => {
                 let aDate = new Date(a.date)
                 let bDate = new Date(b.date)
-                return aDate > bDate ? 1 : -1
+                return aDate < bDate ? 1 : -1
             })
         } else {
             filteredPosts = state.posts.sort((a, b) => {
                 let aDate = new Date(a.date)
                 let bDate = new Date(b.date)
-                return aDate < bDate ? 1 : -1
+                return aDate > bDate ? 1 : -1
             })
         }
         filteredPosts = filteredPosts.filter(controlFunction)
