@@ -226,8 +226,8 @@ const mutations = {
     },
     GET_POSTS(state, val) {
         state.posts = val.sort((a, b) => {
-            let x = new Date(a)
-            let y = new Date(b)
+            let x = new Date(a.date)
+            let y = new Date(b.date)
             return (x < y) ? 1 : -1
         })
     },
