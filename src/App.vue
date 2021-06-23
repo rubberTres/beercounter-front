@@ -7,20 +7,20 @@
     </b-container> -->
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">2 SEZON LICZENIA PIWA</p>
+        <p class="header">2 SEZON</p>
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">24/25 CZERWCA 2021</p>
+        <p class="header">24/25.06</p>
       </b-col>
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
         <img
-          width="100vw"
-          height="100vw"
-          src="https://media.giphy.com/media/kBQLp6rWp0swtXnNaG/source.mp4"
+          width="400"
+          height="400"
+          src="https://media.tenor.com/images/63702c664408ec4242015c2105558593/tenor.gif"
         />
       </b-col>
     </b-row>
