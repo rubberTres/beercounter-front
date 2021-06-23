@@ -1,10 +1,29 @@
 <template>
   <div id="app">
-    <b-container fluid id="mainBox">
+    <!-- <b-container fluid id="mainBox">
       <transition name="fade" mode="out-in">
         <component :is="this.$store.state.currentComponent" />
       </transition>
-    </b-container>
+    </b-container> -->
+    <b-row>
+      <b-col class="mt-3 d-flex justify-content-center align-items-center">
+        <p class="header">2 SEZON LICZENIA PIWA</p>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="mt-3 d-flex justify-content-center align-items-center">
+        <p class="header">24/25 CZERWCA 2021</p>
+      </b-col>
+    </b-row>
+    <b-row>
+      <b-col class="mt-3 d-flex justify-content-center align-items-center">
+        <img
+          width="100vw"
+          height="100vw"
+          src="https://media.giphy.com/media/kBQLp6rWp0swtXnNaG/source.mp4"
+        />
+      </b-col>
+    </b-row>
   </div>
 </template>
 
