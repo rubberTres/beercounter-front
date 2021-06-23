@@ -10,9 +10,9 @@ new Vue({
   store: vuex,
   render: h => h(App),
   mounted() {
-    this.$store.dispatch("checkIfLogged");
-    this.$store.dispatch("getPosts");
-    this.$store.dispatch("getBeerList");
-    this.$store.dispatch("getUserRanking");
+    // this.$store.dispatch("checkIfLogged");
+    // this.$store.dispatch("getPosts");
+    // this.$store.dispatch("getBeerList");
+    // this.$store.dispatch("getUserRanking");
   }
 }).$mount('#app')

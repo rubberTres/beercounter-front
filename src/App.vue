@@ -28,29 +28,29 @@
 </template>
 
 <script>
-import Login from "./components/Login.vue";
-import Register from "./components/Register.vue";
-import Main from "./components/Main.vue";
-import AddPost from "./components/AddPost.vue";
-import UserStats from "./components/UserStats.vue";
-import BeerStats from "./components/BeerStats.vue";
-import Posts from "./components/Posts.vue";
-import AllUsers from "./components/AllUsers.vue";
-import BeerRanking from "./components/BeerRanking.vue";
+// import Login from "./components/Login.vue";
+// import Register from "./components/Register.vue";
+// import Main from "./components/Main.vue";
+// import AddPost from "./components/AddPost.vue";
+// import UserStats from "./components/UserStats.vue";
+// import BeerStats from "./components/BeerStats.vue";
+// import Posts from "./components/Posts.vue";
+// import AllUsers from "./components/AllUsers.vue";
+// import BeerRanking from "./components/BeerRanking.vue";
 
 export default {
   name: "App",
-  components: {
-    Login,
-    Register,
-    Main,
-    AddPost,
-    UserStats,
-    Posts,
-    AllUsers,
-    BeerRanking,
-    BeerStats,
-  },
+  // components: {
+  //   Login,
+  //   Register,
+  //   Main,
+  //   AddPost,
+  //   UserStats,
+  //   Posts,
+  //   AllUsers,
+  //   BeerRanking,
+  //   BeerStats,
+  // },
 };
 </script>
 
