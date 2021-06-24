@@ -12,7 +12,7 @@
     </b-row>
     <b-row>
       <b-col class="mt-3 d-flex justify-content-center align-items-center">
-        <p class="header">24/25.06</p>
+        <a href="https://piwo.life"><p class="header">PRZEJDŹ NA STRONE</p></a>
       </b-col>
     </b-row>
     <b-row>
